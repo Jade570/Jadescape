@@ -17,6 +17,13 @@ public class Line_Renderer : MonoBehaviour
     Camera thisCamera;
     LineRenderer lineRenderer;
 
+    Color left1 = new Color(0,1,1,1);
+    Color left2 = new Color(1, 1, 1, 0);
+    Color right1 = new Color(1,0,1,1);
+    Color right2 = new Color(1, 1, 1, 0);
+
+
+
     public OSC osc;
 
 
@@ -28,10 +35,31 @@ public class Line_Renderer : MonoBehaviour
 
     void Update()
     {
+        //no mouse input
+        if ((Input.GetMouseButton(0) == false && (Input.GetMouseButton(1) == false)))
+        {
+            OscMessage message3 = new OscMessage();
+            message3.address = "/Playing";
+            message3.values.Add(0);
+            osc.Send(message3);
+        }
+        else
+        {
+            OscMessage message3 = new OscMessage();
+            message3.address = "/Playing";
+            message3.values.Add(1);
+            osc.Send(message3);
+        }
 
+        //left click
         if (Input.GetMouseButtonDown(0))
         {
-            CreateLine();
+            OscMessage message2 = new OscMessage();
+            message2.address = "/Button";
+            message2.values.Add(0);
+            osc.Send(message2);
+
+            CreateLine(0);
         }
 
         if (Input.GetMouseButton(0))
@@ -45,10 +73,42 @@ public class Line_Renderer : MonoBehaviour
                 UpdateLine(mouseWorld);
             }
 
-            OscMessage message = new OscMessage();
-            message.address = "/mouseY";
-            message.values.Add(mouseWorld.y);
-            osc.Send(message);
+            OscMessage message1 = new OscMessage();
+            message1.address = "/mouseY";
+            message1.values.Add((int)((mouseWorld.y+17)/2.43));
+            osc.Send(message1);
+
+
+
+        }
+
+        //right click
+        if (Input.GetMouseButtonDown(1))
+        {
+            OscMessage message2 = new OscMessage();
+            message2.address = "/Button";
+            message2.values.Add(1);
+            osc.Send(message2);
+
+
+            CreateLine(1);
+        }
+
+        if (Input.GetMouseButton(1))
+        {
+            Vector3 tempFingerPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, thisCamera.nearClipPlane * 100);
+            mouseWorld = thisCamera.ScreenToWorldPoint(tempFingerPos);
+
+
+            if (Vector3.Distance(mouseWorld, fingerPositions[fingerPositions.Count - 1]) > .1f)
+            {
+                UpdateLine(mouseWorld);
+            }
+
+            OscMessage message1 = new OscMessage();
+            message1.address = "/mouseY";
+            message1.values.Add((int)((mouseWorld.y + 17) / 2.43));
+            osc.Send(message1);
         }
 
     }
@@ -56,11 +116,22 @@ public class Line_Renderer : MonoBehaviour
 
 
 
-    void CreateLine()
+    void CreateLine(int mouseButton)
     {
         currentLine = new GameObject("line");
 
         lineRenderer = currentLine.AddComponent<LineRenderer>();
+        lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            lineRenderer.SetColors(left1, left2);
+        }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            lineRenderer.SetColors(right1, right2);
+        }
+
 
         fingerPositions.Clear();
             Vector3 tempPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, thisCamera.nearClipPlane * 100);
