@@ -6,7 +6,14 @@ public class draw_line : MonoBehaviour
 {
     private GameObject currentLine;
     private LineRenderer lineRenderer;
+ 
     public List<Vector2> fingerPositions;
+    public OSC osc;
+
+    void Start()
+    {
+        Debug.Log(Screen.width + "    " +Screen.height);
+    }
 
 
     void Update()
@@ -23,7 +30,13 @@ public class draw_line : MonoBehaviour
             {
                 UpdateLine(tempFingerPos);
             }
+
+            OscMessage message = new OscMessage();
+            message.address = "/mouseY";
+            message.values.Add(Input.mousePosition.y);
+            osc.Send(message);
         }
+
     }
 
 
