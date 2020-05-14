@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Line_Renderer : MonoBehaviour
 {
+
+    public LibPdInstance pdPatch;
     List<Vector3> linePoints = new List<Vector3>();
 
     private GameObject currentLine;
@@ -24,8 +26,6 @@ public class Line_Renderer : MonoBehaviour
 
 
 
-    public OSC osc;
-
 
     void Awake()
     {
@@ -38,26 +38,16 @@ public class Line_Renderer : MonoBehaviour
         //no mouse input
         if ((Input.GetMouseButton(0) == false && (Input.GetMouseButton(1) == false)))
         {
-            OscMessage message3 = new OscMessage();
-            message3.address = "/Playing";
-            message3.values.Add(0);
-            osc.Send(message3);
+            pdPatch.SendFloat("Playing", 0);
         }
         else
         {
-            OscMessage message3 = new OscMessage();
-            message3.address = "/Playing";
-            message3.values.Add(1);
-            osc.Send(message3);
+            pdPatch.SendFloat("Playing", 1);
         }
 
         //left click
         if (Input.GetMouseButtonDown(0))
         {
-            OscMessage message2 = new OscMessage();
-            message2.address = "/Button";
-            message2.values.Add(0);
-            osc.Send(message2);
 
             CreateLine(0);
         }
@@ -68,16 +58,12 @@ public class Line_Renderer : MonoBehaviour
             mouseWorld = thisCamera.ScreenToWorldPoint(tempFingerPos);
 
 
-            if (Vector3.Distance(mouseWorld, fingerPositions[fingerPositions.Count - 1]) > .1f)
-            {
+            //if (Vector3.Distance(mouseWorld, fingerPositions[fingerPositions.Count - 1]) > .1f)
+            //{
                 UpdateLine(mouseWorld);
-            }
+            //}
 
-            OscMessage message1 = new OscMessage();
-            message1.address = "/mouseY";
-            message1.values.Add((int)((mouseWorld.y+17)/2.43));
-            osc.Send(message1);
-
+            pdPatch.SendFloat("mouseY", (int)((mouseWorld.y + 17) / 2.43));
 
 
         }
@@ -85,11 +71,6 @@ public class Line_Renderer : MonoBehaviour
         //right click
         if (Input.GetMouseButtonDown(1))
         {
-            OscMessage message2 = new OscMessage();
-            message2.address = "/Button";
-            message2.values.Add(1);
-            osc.Send(message2);
-
 
             CreateLine(1);
         }
@@ -100,15 +81,13 @@ public class Line_Renderer : MonoBehaviour
             mouseWorld = thisCamera.ScreenToWorldPoint(tempFingerPos);
 
 
-            if (Vector3.Distance(mouseWorld, fingerPositions[fingerPositions.Count - 1]) > .1f)
-            {
+           // if (Vector3.Distance(mouseWorld, fingerPositions[fingerPositions.Count - 1]) > .1f)
+            //{
                 UpdateLine(mouseWorld);
-            }
+            //}
 
-            OscMessage message1 = new OscMessage();
-            message1.address = "/mouseY";
-            message1.values.Add((int)((mouseWorld.y + 17) / 2.43));
-            osc.Send(message1);
+
+            pdPatch.SendFloat("mouseY", (int)((mouseWorld.y + 17) / 2.43));
         }
 
     }
@@ -125,11 +104,11 @@ public class Line_Renderer : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            lineRenderer.SetColors(left1, left2);
+            lineRenderer.SetColors(left1,right1);
         }
         else if (Input.GetMouseButtonDown(1))
         {
-            lineRenderer.SetColors(right1, right2);
+            lineRenderer.SetColors(right1, left1);
         }
 
 
