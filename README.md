@@ -25,3 +25,9 @@ Final Project of team Theramin for 2020-1 Immersive Media Studio @ Sogang Univ.
     - Cheryoung Oh https://github.com/Jade570 
   - Unity
     - Sangkyu Lee https://github.com/sgexclsv
+    
+## How to Open in Unity
+1. Clone this repository.
+2. Open this repository as a project in Unity.
+3. Click Assets->Scripts->SampleScene.
+
