@@ -1,6 +1,15 @@
 # 🎵 Jadescape
 Final Project of team Theramin for 2020-1 Immersive Media Studio @ Sogang Univ.
 
+## Program Used
+- Unity
+  - 2018.4.22f1 (LTS) https://unity3d.com/unity/whats-new/2018.4.22f1
+- Pure Data
+  - Vanilla 0.50-2 https://puredata.info/downloads/pure-data
+- libpd Unity wrapper
+  - LibPd Unity Integration https://github.com/LibPdIntegration/LibPdIntegration
+
+
 ## Members
 
 - Art
