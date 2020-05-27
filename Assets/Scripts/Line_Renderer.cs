@@ -8,8 +8,8 @@ using UnityEngine;
 
 public class Line_Renderer : MonoBehaviour {
 
-    public LibPdInstance pdPatch;
-    List<Vector3> linePoints = new List<Vector3> ();
+    // public LibPdInstance pdPatch;
+
     public GameObject dot2;
     public GameObject Camera2;
 
@@ -26,7 +26,7 @@ public class Line_Renderer : MonoBehaviour {
     LineRenderer lineRenderer;
 
     Color lineColor_1_start = new Color (0, 1, 1, 1);
-    Color lineColor_1_end = new Color (1, 1, 1, 1);
+    Color lineColor_1_end = new Color (1, 0, 1, 1);
     private int vertexCount = 0;
 
     void Awake () {
@@ -53,7 +53,7 @@ public class Line_Renderer : MonoBehaviour {
             UpdateLine (mouseWorld);
         } else {
             // 입력이 없을 때는 퓨어데이터모듈에 데이터0을 보냄
-            // pdPatch.SendFloat ("Playing", 0);
+            //  pdPatch.SendFloat ("Playing", 0);
         }
 
         if (Pvr_UnitySDKAPI.Controller.UPvr_GetKeyUp (0, Pvr_KeyCode.TRIGGER) || (Input.GetMouseButtonUp (0))) {
@@ -88,7 +88,7 @@ public class Line_Renderer : MonoBehaviour {
 
     void UpdateLine (Vector3 newFingerPos) {
         //현재 좌표에 맞춰 소리 내기. (컴퓨터에선 작동하는데 VR빌드하면 스크립트 전체가 마비됨)
-        //pdPatch.SendFloat ("Playing", 1);
+        // pdPatch.SendFloat ("Playing", 1);
         //pdPatch.SendFloat ("mouseY", (int) ((newFingerPos.y + 17) / 2.43));
 
         lineRenderer.positionCount++;
