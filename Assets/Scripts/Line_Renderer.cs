@@ -37,7 +37,12 @@ public class Line_Renderer : MonoBehaviour {
     void Update () {
         //클릭 시작하면 Line을 만듬
         if (Pvr_UnitySDKAPI.Controller.UPvr_GetKeyDown (0, Pvr_KeyCode.TRIGGER) || Input.GetMouseButtonDown (0)) {
-            CreateLine ();
+            // 마우스 오른쪽 버튼이 눌려있거나, 컨트롤러의 앱 버튼이 눌려있으면 루프음이 됨
+            if (Pvr_UnitySDKAPI.Controller.UPvr_GetKey (0, Pvr_KeyCode.APP)|| Input.GetMouseButton (1)) {
+                CreateLine (true);
+            } else {
+                CreateLine (false);
+            }
         }
 
         //클릭한 채로 유지하고 있으면 Line을 연장함
@@ -58,14 +63,18 @@ public class Line_Renderer : MonoBehaviour {
 
         if (Pvr_UnitySDKAPI.Controller.UPvr_GetKeyUp (0, Pvr_KeyCode.TRIGGER) || (Input.GetMouseButtonUp (0))) {
             currentLine.GetComponent<Line_Stance> ().IsMakingDone = true;
+            currentLine.GetComponent<Line_Stance> ().getDir();
         }
     }
 
-    void CreateLine () {
+    void CreateLine (bool loop) {
 
         currentLine = new GameObject ("line");
         lineRenderer = currentLine.AddComponent<LineRenderer> ();
         lineRenderer.material = new Material (Shader.Find ("Sprites/Default"));
+
+        //만들어진 라인이 공전하려면 월드스페이스 말고 오브젝트 포지션에 종속되어야함
+        lineRenderer.useWorldSpace = false;
 
         // 지정해놓은 public 변수에 맞춰서 선의 width값 지정해주는 거 추가함
         lineRenderer.startWidth = startWidth;
@@ -82,9 +91,10 @@ public class Line_Renderer : MonoBehaviour {
 
         //line이 만들어지고 난 후의 움직임을 관리하는 스크립트를 line에 붙여줌
         currentLine.AddComponent<Line_Stance> ();
-        currentLine.GetComponent<Line_Stance> ().loop = false;
-        currentLine.GetComponent<Line_Stance> ().FadeSpeed = 0.5f;
+        currentLine.GetComponent<Line_Stance> ().FadeSpeed = 0.1f;
+        if (loop) { currentLine.GetComponent<Line_Stance> ().loop = true; } else { currentLine.GetComponent<Line_Stance> ().loop = false; }
     }
+   
 
     void UpdateLine (Vector3 newFingerPos) {
         //현재 좌표에 맞춰 소리 내기. (컴퓨터에선 작동하는데 VR빌드하면 스크립트 전체가 마비됨)

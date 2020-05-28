@@ -115,8 +115,8 @@ public class Pvr_ToolTips : MonoBehaviour
     {
         currentDevice = transform.GetComponentInParent<Pvr_ControllerVisual>().currentDevice;
         transform.Find("apptip/btn/Text").GetComponent<Text>().text = Pvr_UnitySDKAPI.System.UPvr_GetLangString("apptip");
-        transform.Find("touchtip/btn/Text").GetComponent<Text>().text = Pvr_UnitySDKAPI.System.UPvr_GetLangString("touchtip");
-        transform.Find("hometip/btn/Text").GetComponent<Text>().text = Pvr_UnitySDKAPI.System.UPvr_GetLangString("hometip");
+        transform.Find("touchtip/btn/Text").GetComponent<Text>().text = Pvr_UnitySDKAPI.System.UPvr_GetLangString("선 색상 정하기");
+        transform.Find("hometip/btn/Text").GetComponent<Text>().text = Pvr_UnitySDKAPI.System.UPvr_GetLangString("앱 종료");
 
         var volup = transform.Find("volup/btn/Text");
         if (volup != null)
@@ -126,7 +126,7 @@ public class Pvr_ToolTips : MonoBehaviour
             voldown.GetComponent<Text>().text = Pvr_UnitySDKAPI.System.UPvr_GetLangString("voldowntip");
         var trigtip = transform.Find("triggertip/btn/Text");
         if (trigtip != null)
-            trigtip.GetComponent<Text>().text = Pvr_UnitySDKAPI.System.UPvr_GetLangString("triggertip");
+            trigtip.GetComponent<Text>().text = Pvr_UnitySDKAPI.System.UPvr_GetLangString("그림그리기 / 그림과 물체 선택하기");
         var griptip = transform.Find("grip/btn/Text");
         if (griptip != null)
             griptip.GetComponent<Text>().text = Pvr_UnitySDKAPI.System.UPvr_GetLangString("griptip");
