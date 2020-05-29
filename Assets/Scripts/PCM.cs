@@ -5,10 +5,11 @@ using System;
 
 public class PCM : MonoBehaviour
 {
-    public int sampleFreq = 44100;
+    public int sampleFreq = 48000;
     public float frequency = 440;
+    public float pfrequency;
 
-    private float[] samples = new float[44100];
+    private float[] samples = new float[48000];
     public AudioClip ac;
     public AudioSource aud;
 
@@ -17,7 +18,9 @@ public class PCM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        aud.Play();
+        pfrequency = frequency;
+        updatewave();
+        
     }
 
     // Update is called once per frame
@@ -73,11 +76,23 @@ public class PCM : MonoBehaviour
                 break;
         }
 
-       //if (Input.GetMouseButtonDown(0))
-        //{
-            updatewave();
-            
-        //}
+        if (Input.GetMouseButton(0))
+        {
+
+            if (pfrequency != frequency)
+            {
+                updatewave();
+                aud.Play();
+                
+                pfrequency = frequency;
+            }
+            //Debug.Log(aud.clip.length);
+        }
+        else
+        {
+            aud.Stop();
+        }
+
     }
 
     public void updatewave()

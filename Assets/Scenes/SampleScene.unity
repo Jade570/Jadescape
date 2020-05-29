@@ -671,7 +671,7 @@ GameObject:
   - component: {fileID: 1966773345}
   - component: {fileID: 1966773347}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Melody Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -689,8 +689,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f02494a23fbc8e2458849819956a4ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sampleFreq: 44
+  sampleFreq: 44100
   frequency: 440
+  pfrequency: 0
   ac: {fileID: 0}
   aud: {fileID: 0}
 --- !u!4 &1966773346
@@ -721,7 +722,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
