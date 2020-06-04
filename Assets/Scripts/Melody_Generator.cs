@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Pvr_UnitySDKAPI;
 
 public class Melody_Generator : MonoBehaviour
 {
     public int sampleFreq = 48000;
     public float frequency = 440;
     public float pfrequency;
+    public GameObject dot2;
 
     private float[] samples = new float[48000];
     public AudioClip ac;
     public AudioSource aud;
 
-    double divisor = Screen.height / 14;
+    double divisor = 1600 / 14;
 
     // Start is called before the first frame update
     void Start()
@@ -26,69 +28,80 @@ public class Melody_Generator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        double num = Math.Round(Input.mousePosition.y / divisor);
-        switch (num)
+        float num = (dot2.transform.position.y+4);
+
+        if (num < 0.643)
         {
-            case 0:
-                frequency = mtof(48);
-                break;
-
-            case 1:
-                frequency = mtof(50);
-                break;
-
-            case 2:
-                frequency = mtof(52);
-                break;
-
-            case 3:
-                frequency = mtof(53);
-                break;
-            case 4:
-                frequency = mtof(55);
-                break;
-            case 5:
-                frequency = mtof(57);
-                break;
-            case 6:
-                frequency = mtof(59);
-                break;
-            case 7:
-                frequency = mtof(60);
-                break;
-            case 8:
-                frequency = mtof(62);
-                break;
-            case 9:
-                frequency = mtof(64);
-                break;
-            case 10:
-                frequency = mtof(65);
-                break;
-            case 11:
-                frequency = mtof(67);
-                break;
-            case 12:
-                frequency = mtof(69);
-                break;
-            case 13:
-                frequency = mtof(71);
-                break;
+            frequency = mtof(48);
+        }
+        else if (num < 0.643 * 2)
+        {
+            frequency = mtof(50);
+        }
+        else if (num < 0.643 * 3)
+        {
+            frequency = mtof(52);
+        }
+        else if (num < 0.643 * 4)
+        {
+            frequency = mtof(53);
+        }
+        else if (num < 0.643 * 5)
+        {
+            frequency = mtof(55);
+        }
+        else if (num < 0.643 * 6)
+        {
+            frequency = mtof(57);
+        }
+        else if (num < 0.643 * 7)
+        {
+            frequency = mtof(59);
+        }
+        else if (num < 0.643 * 8)
+        {
+            frequency = mtof(60);
+        }
+        else if (num < 0.643 * 9)
+        {
+            frequency = mtof(62);
+        }
+        else if (num < 0.643 * 10)
+        {
+            frequency = mtof(64);
+        }
+        else if (num < 0.643 * 11)
+        {
+            frequency = mtof(65);
+        }
+        else if (num < 0.643 * 12)
+        {
+            frequency = mtof(67);
+        }
+        else if (num < 0.643 * 13)
+        {
+            frequency = mtof(69);
+        }
+        else
+        {
+            frequency = mtof(71);
         }
 
-        if (Input.GetMouseButton(0))
+        if (Pvr_UnitySDKAPI.Controller.UPvr_GetKey(0, Pvr_KeyCode.TRIGGER) || Input.GetMouseButton(0))
         {
 
             if (pfrequency != frequency)
             {
+                
                 updatewave();
                 aud.Play();
                 
                 pfrequency = frequency;
+          
             }
-            //Debug.Log(aud.clip.length);
+            Debug.Log(frequency);
         }
-        else
+        else if(Pvr_UnitySDKAPI.Controller.UPvr_GetKeyUp(0, Pvr_KeyCode.TRIGGER) || Input.GetMouseButtonUp(0))
         {
             aud.Stop();
         }

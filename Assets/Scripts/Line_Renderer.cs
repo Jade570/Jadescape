@@ -98,8 +98,6 @@ public class Line_Renderer : MonoBehaviour {
 
     void UpdateLine (Vector3 newFingerPos) {
         //현재 좌표에 맞춰 소리 내기. (컴퓨터에선 작동하는데 VR빌드하면 스크립트 전체가 마비됨)
-        // pdPatch.SendFloat ("Playing", 1);
-        //pdPatch.SendFloat ("mouseY", (int) ((newFingerPos.y + 17) / 2.43));
 
         lineRenderer.positionCount++;
         lineRenderer.SetPosition (vertexCount, newFingerPos);
