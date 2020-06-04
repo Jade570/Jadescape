@@ -42,8 +42,10 @@ public class Line_Renderer_Aurora : MonoBehaviour {
         //클릭 시작하면 Line을 만듬
         if (Pvr_UnitySDKAPI.Controller.UPvr_GetKeyDown (0, Pvr_KeyCode.TRIGGER) || Input.GetMouseButtonDown (0)) {
             // 마우스 오른쪽 버튼이 눌려있거나, 컨트롤러의 앱 버튼이 눌려있으면 루프음이 됨
+
             if (Pvr_UnitySDKAPI.Controller.UPvr_GetKey (0, Pvr_KeyCode.APP) || Input.GetMouseButton (1)) {
                 CreateLine (true);
+
             } else {
                 CreateLine (false);
             }
@@ -88,11 +90,12 @@ public class Line_Renderer_Aurora : MonoBehaviour {
         // 선 색깔 지정
         //lineRenderer.startColor = lineColor_1_start;
         //lineRenderer.endColor = lineColor_1_end;
-        newLine.GetComponent<Aurora_edited> ().GradientSet (new Color (0, 255, 255));
+        newLine.GetComponent<Aurora_edited> ().GradientSet (new Color (255, 0, 0));
 
         // Line의 vertex 개수를 세는 변수를 초기화
         vertexCount = 0;
         newLine.GetComponent<Aurora_edited> ().auroraParticlesCount = 3000;
+ 
         //처음 Line을 만들면 vertex가 기본적으로 두 개 생김. 이걸 없애야 함.
         //lineRenderer.positionCount = 0;
 
@@ -100,6 +103,8 @@ public class Line_Renderer_Aurora : MonoBehaviour {
         // currentLine.AddComponent<Line_Stance> ();
         //  newLine.GetComponent<Line_Stance> ().FadeSpeed = 0.1f;
         //  if (loop) { newLine.GetComponent<Line_Stance> ().loop = true; } else { newLine.GetComponent<Line_Stance> ().loop = false; }
+
+        previousFingerPos = new Vector3 (0, 0, 0);
     }
 
     void UpdateLine (Vector3 newFingerPos) {
@@ -108,19 +113,17 @@ public class Line_Renderer_Aurora : MonoBehaviour {
         //pdPatch.SendFloat ("mouseY", (int) ((newFingerPos.y + 17) / 2.43));
 
         //newLine.GetComponent<Aurora_edited> ().auroraParticlesCount++;
-        if (newLine.GetComponent<Aurora_edited> ().IsMakingDone==false) {
-            int bogan = (int) (Vector3.Distance(newFingerPos,previousFingerPos)*5);
-            for (int i = 1; i < bogan; i++)
-            {
-            newLine.GetComponent<Aurora_edited> ().vertexs.Add (Vector3.Lerp(previousFingerPos,newFingerPos,i/bogan));
+        if (previousFingerPos != new Vector3(0,0,0) ) {
+            int bogan = (int) (Vector3.Distance (newFingerPos, previousFingerPos) * 5);
+            for (float i = 1; i < bogan; i++) {
+                newLine.GetComponent<Aurora_edited> ().vertexs.Add (Vector3.Lerp (previousFingerPos, newFingerPos, i / bogan));
+
             }
-             Debug.LogWarning(bogan);
+
         }
-        
+
         previousFingerPos = newFingerPos;
         newLine.GetComponent<Aurora_edited> ().vertexs.Add (newFingerPos);
-
-       
 
         //newLine.GetComponent<Aurora_edited> ().SetParticleCount ();
 
