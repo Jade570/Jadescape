@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using Pvr_UnitySDKAPI;
 
@@ -7,10 +8,12 @@ public class picomelodysample : MonoBehaviour
 {
     public int sampleFreq = 48000;
     public float frequency = 440;
+    public GameObject dot2;
 
     private float[] samples = new float[48000];
     public AudioClip ac;
     public AudioSource aud;
+    private int a = 0;
 
 
     // Start is called before the first frame update
@@ -18,6 +21,8 @@ public class picomelodysample : MonoBehaviour
     {
         updatewave();
         //aud.Play();
+
+
     }
 
     // Update is called once per frame
@@ -28,6 +33,8 @@ public class picomelodysample : MonoBehaviour
         {
             //updatewave();
             aud.Play();
+            System.IO.File.WriteAllText("file"+a+".txt", dot2.transform.position.y.ToString());
+
         }
         else if (Pvr_UnitySDKAPI.Controller.UPvr_GetKeyUp(0, Pvr_KeyCode.TRIGGER) || Input.GetMouseButtonUp(0))
         {
