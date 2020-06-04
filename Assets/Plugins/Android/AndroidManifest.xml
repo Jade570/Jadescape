@@ -87,7 +87,7 @@
     <meta-data android:name="platform_sbf" android:value="-1" />
     <!--Set the Viewer platform msaa.-->
     <meta-data android:name="MSAA" android:value="2" />
-    <meta-data android:name="com.pvr.hmd.trackingmode" android:value="3dof" />
+    <meta-data android:name="com.pvr.hmd.trackingmode" android:value="6dof" />
     <meta-data android:name="isPUI" android:value="0" />
     <meta-data android:name="enable_eyetracking" android:value="0" />
     <meta-data android:name="enable_cpt" android:value="0" />
