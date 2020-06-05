@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class Line_Renderer_Aurora : MonoBehaviour {
 
-    // public LibPdInstance pdPatch;
 
     public GameObject dot2;
     public GameObject Camera2;
@@ -60,54 +59,30 @@ public class Line_Renderer_Aurora : MonoBehaviour {
             tempFingerPos = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, thisCamera.nearClipPlane * 1000);
             mouseWorld = thisCamera.ScreenToWorldPoint (tempFingerPos);
             UpdateLine (mouseWorld);
-        } else {
-            // 입력이 없을 때는 퓨어데이터모듈에 데이터0을 보냄
-            //  pdPatch.SendFloat ("Playing", 0);
         }
 
         if (Pvr_UnitySDKAPI.Controller.UPvr_GetKeyUp (0, Pvr_KeyCode.TRIGGER) || (Input.GetMouseButtonUp (0))) {
             newLine.GetComponent<Aurora_edited> ().IsMakingDone = true;
-            // currentLine.GetComponent<Line_Stance> ().getDir ();
         }
     }
 
     void CreateLine (bool loop) {
-
-        //currentLine = new GameObject ("line");
-        //lineRenderer = currentLine.AddComponent<LineRenderer> ();
-        //lineRenderer.material = new Material (Shader.Find ("Sprites/Default"));
         newLine = Instantiate (aurora, new Vector3 (0, 0, 0), Quaternion.identity);
 
         //만들어진 라인이 공전하려면 월드스페이스 말고 오브젝트 포지션에 종속되어야함
-        //lineRenderer.useWorldSpace = false;
 
         // 지정해놓은 public 변수에 맞춰서 선의 width값 지정해주는 거 추가함
-        //lineRenderer.startWidth = startWidth;
-        //lineRenderer.endWidth = endWidth;
 
         // 선 색깔 지정
-        //lineRenderer.startColor = lineColor_1_start;
-        //lineRenderer.endColor = lineColor_1_end;
         newLine.GetComponent<Aurora_edited> ().GradientSet (new Color (0, 255, 255));
 
         // Line의 vertex 개수를 세는 변수를 초기화
         vertexCount = 0;
         newLine.GetComponent<Aurora_edited> ().auroraParticlesCount = 3000;
         //처음 Line을 만들면 vertex가 기본적으로 두 개 생김. 이걸 없애야 함.
-        //lineRenderer.positionCount = 0;
-
-        //line이 만들어지고 난 후의 움직임을 관리하는 스크립트를 line에 붙여줌
-        // currentLine.AddComponent<Line_Stance> ();
-        //  newLine.GetComponent<Line_Stance> ().FadeSpeed = 0.1f;
-        //  if (loop) { newLine.GetComponent<Line_Stance> ().loop = true; } else { newLine.GetComponent<Line_Stance> ().loop = false; }
     }
 
     void UpdateLine (Vector3 newFingerPos) {
-        //현재 좌표에 맞춰 소리 내기. (컴퓨터에선 작동하는데 VR빌드하면 스크립트 전체가 마비됨)
-        // pdPatch.SendFloat ("Playing", 1);
-        //pdPatch.SendFloat ("mouseY", (int) ((newFingerPos.y + 17) / 2.43));
-
-        //newLine.GetComponent<Aurora_edited> ().auroraParticlesCount++;
         if (newLine.GetComponent<Aurora_edited> ().IsMakingDone==false) {
             int bogan = (int) (Vector3.Distance(newFingerPos,previousFingerPos)*5);
             for (int i = 1; i < bogan; i++)
@@ -119,16 +94,6 @@ public class Line_Renderer_Aurora : MonoBehaviour {
         
         previousFingerPos = newFingerPos;
         newLine.GetComponent<Aurora_edited> ().vertexs.Add (newFingerPos);
-
-       
-
-        //newLine.GetComponent<Aurora_edited> ().SetParticleCount ();
-
-        //vertexCount++;
-
-        //lineRenderer.positionCount++;
-        //lineRenderer.SetPosition (vertexCount, newFingerPos);
-
     }
 
 }
