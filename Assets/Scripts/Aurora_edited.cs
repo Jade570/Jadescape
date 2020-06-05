@@ -26,6 +26,7 @@ public class Aurora_edited : MonoBehaviour {
 
     [Header ("Colors")]
     public Gradient auroraColorMain;
+
     GradientColorKey[] gradientColor;
 
     [Header ("Resources")]
@@ -85,9 +86,22 @@ public class Aurora_edited : MonoBehaviour {
         //그라데이션이라는 클래스가 유니티상에 있음
 
         //colorkey 설정 - 중간색이 파랑. (첫색은 0 끝색이 1, 구간별 색은 다양하게 넣을 수 있음)
+
+        //GradientUsageAttribute = false;
         gradientColor = new GradientColorKey[1];
         gradientColor[0].color = NewGrad;
         gradientColor[0].time = 0.5F;
+
+        /*
+        float h, s, v;
+        Color.RGBToHSV (NewGrad, out h, out s, out v);
+        gradientColor[0].color = Color.HSVToRGB (h - 0.05f, s, v);
+        gradientColor[0].time = 0.01F;
+      
+        gradientColor[2].color = Color.HSVToRGB (h + 0.05f, s, v);
+        gradientColor[2].time = 0.99F;
+*/
+
         //밖에서 public으로 받아온 gradient의 정보를 내가 임의로 설정한 colorkey로 바꿔치기
         auroraColorMain.SetKeys (gradientColor, auroraColorMain.alphaKeys);
 
@@ -95,8 +109,6 @@ public class Aurora_edited : MonoBehaviour {
 
     //Base Aurora Update
     private void FixedUpdate () {
-
-    
 
         for (int i = 0; i < vertexs.Count; i++) {
 
@@ -127,5 +139,7 @@ public class Aurora_edited : MonoBehaviour {
 
         }
         pSystem.SetParticles (p_Particles, vertexs.Count);
+        //오로라 오브젝트만 블러처리가 되도록 카메라에 컴포넌트를 달아두었음. 그러려면 레이어8에 지정되어야함
+
     }
 }
