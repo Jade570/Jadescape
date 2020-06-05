@@ -122,7 +122,7 @@ public class Aurora_edited : MonoBehaviour {
             Vector3 p_Position;
             // 써큘러가 아니면 포지션을 정하는 방식은 일단 다음과 같다.
             //if (IsMakingDone == true)
-            p_Position = vertexs[i] + transform.position;
+            p_Position = vertexs[i]; //+ transform.position;
             //else p_Position = vertexs[i] + transform.position;
             //p_Position = new Vector3 (i+offset * auroraSizes.x, i+0, i+auroraSizes.z) + transform.position;
             // Quaternion.Euler(0, auroraRotation + angleOffset, 0) * new Vector3(offset * auroraSizes.x, 0, auroraSizes.z) + transform.position;

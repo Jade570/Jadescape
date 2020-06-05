@@ -55,7 +55,7 @@ public class Line_Renderer_Aurora : MonoBehaviour {
         } else if (Input.GetMouseButton (0)) {
             //마우스 인풋이랑 카메라에서 일정거리 떨어진 z좌표를 가지고 그걸로 공간좌표를 환산
             //(z값이 속한 카메라 시선방향과의 접면으로 좌표를 이동시켜주지 않으면 마우스xy좌표가 너무 커서 선이 미칠듯이 길어짐)
-            tempFingerPos = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, thisCamera.nearClipPlane * 1000);
+            tempFingerPos = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, thisCamera.nearClipPlane * 100);
             mouseWorld = thisCamera.ScreenToWorldPoint (tempFingerPos);
             UpdateLine (mouseWorld);
         }
@@ -85,7 +85,7 @@ public class Line_Renderer_Aurora : MonoBehaviour {
     void UpdateLine (Vector3 newFingerPos) {
 
         if (previousFingerPos != new Vector3 (0, 0, 0)) {
-            int bogan = (int) (Vector3.Distance (newFingerPos, previousFingerPos) * 5);
+            int bogan = (int) (Vector3.Distance (newFingerPos, previousFingerPos) * 30);
             for (float i = 1; i < bogan; i++) {
                 newLine.GetComponent<Aurora_edited> ().vertexs.Add (Vector3.Lerp (previousFingerPos, newFingerPos, i / bogan));
 

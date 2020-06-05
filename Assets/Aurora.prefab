@@ -65,8 +65,8 @@ MonoBehaviour:
   auroraParticlesCount: 1000
   auroraAnimationFrequency: 0.14
   auroraCurvature: 5
-  auroraSizes: {x: 0, y: 16, z: 0}
-  auroraParticleThickness: 2
+  auroraSizes: {x: 0, y: 1.6, z: 0}
+  auroraParticleThickness: 0.4
   auroraLights: 1
   auroraLightsCount: 30
   auroraLightsRange: 1000
