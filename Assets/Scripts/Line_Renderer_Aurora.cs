@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class Line_Renderer_Aurora : MonoBehaviour {
 
-
     public GameObject dot2;
     public GameObject Camera2;
     public GameObject aurora;
@@ -63,6 +62,7 @@ public class Line_Renderer_Aurora : MonoBehaviour {
 
         if (Pvr_UnitySDKAPI.Controller.UPvr_GetKeyUp (0, Pvr_KeyCode.TRIGGER) || (Input.GetMouseButtonUp (0))) {
             newLine.GetComponent<Aurora_edited> ().IsMakingDone = true;
+            previousFingerPos = new Vector3 (0, 0, 0);
         }
     }
 
@@ -83,15 +83,17 @@ public class Line_Renderer_Aurora : MonoBehaviour {
     }
 
     void UpdateLine (Vector3 newFingerPos) {
-        if (newLine.GetComponent<Aurora_edited> ().IsMakingDone==false) {
-            int bogan = (int) (Vector3.Distance(newFingerPos,previousFingerPos)*5);
-            for (int i = 1; i < bogan; i++)
-            {
-            newLine.GetComponent<Aurora_edited> ().vertexs.Add (Vector3.Lerp(previousFingerPos,newFingerPos,i/bogan));
+
+        if (previousFingerPos != new Vector3 (0, 0, 0)) {
+            int bogan = (int) (Vector3.Distance (newFingerPos, previousFingerPos) * 5);
+            for (float i = 1; i < bogan; i++) {
+                newLine.GetComponent<Aurora_edited> ().vertexs.Add (Vector3.Lerp (previousFingerPos, newFingerPos, i / bogan));
+
             }
-             Debug.LogWarning(bogan);
+            Debug.LogWarning (bogan);
+
         }
-        
+
         previousFingerPos = newFingerPos;
         newLine.GetComponent<Aurora_edited> ().vertexs.Add (newFingerPos);
     }
