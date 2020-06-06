@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5727458154255528717
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5727458154255528719}
+  - component: {fileID: 2059235886009851409}
+  - component: {fileID: 5727458154255528718}
+  m_Layer: 0
+  m_Name: Aurora
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5727458154255528719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5727458154255528717}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -400, y: 500, z: -400}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2059235886009851409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5727458154255528717}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 594e28ff83b53fe4b8cac918f13c6723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  existLength: 0
+  loop: 0
+  IsMakingDone: 0
+  FadeSpeed: 0
+  numOfVertex: 0
+--- !u!114 &5727458154255528718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5727458154255528717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb886b3b2389fa448bed1fd956b81918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  auroraSeed: 0
+  auroraParticlesCount: 1000
+  auroraAnimationFrequency: 0.14
+  auroraCurvature: 5
+  auroraSizes: {x: 0, y: 1.6, z: 0}
+  auroraParticleThickness: 0.4
+  auroraLights: 1
+  auroraLightsCount: 30
+  auroraLightsRange: 1000
+  auroraLightsIntesity: 1
+  auroraColorMain:
+    serializedVersion: 2
+    key0: {r: 0.16927983, g: 0.74264705, b: 0.29186174, a: 0}
+    key1: {r: 0.10726642, g: 0.3954181, b: 0.4705882, a: 0.19215687}
+    key2: {r: 0.014705896, g: 1, b: 0.30689654, a: 0.34509805}
+    key3: {r: 0.1189879, g: 0.77413, b: 0.99050707, a: 0.59607846}
+    key4: {r: 0.4664478, g: 0.33251917, b: 0.10495075, a: 0.5803922}
+    key5: {r: 0.45698398, g: 0.32577264, b: 0.10282139, a: 0.43529412}
+    key6: {r: 0, g: 0, b: 0, a: 0.46666667}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 14842
+    ctime1: 32189
+    ctime2: 42983
+    ctime3: 52814
+    ctime4: 38550
+    ctime5: 48573
+    ctime6: 65535
+    ctime7: 65535
+    atime0: 0
+    atime1: 10023
+    atime2: 17348
+    atime3: 25250
+    atime4: 37394
+    atime5: 48959
+    atime6: 56283
+    atime7: 65535
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 8
+  auroraMaterialMain: {fileID: 2100000, guid: 43cfe7bfdef565b43b248e321a24e9ce, type: 2}
+  IsMakingDone: 0
+  vertexs: []
