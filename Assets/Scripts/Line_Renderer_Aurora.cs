@@ -8,29 +8,20 @@ using UnityEngine;
 
 public class Line_Renderer_Aurora : MonoBehaviour {
 
-    // public LibPdInstance pdPatch;
-
     public GameObject dot2;
     public GameObject Camera2;
     public GameObject aurora;
     GameObject newLine;
 
-    private GameObject currentLine;
-
-    private Vector3 mouseWorld;
     private Vector3 tempFingerPos;
 
     public float startWidth = 0.1f;
     public float endWidth = 0.1f;
-    public float threshold = 0.001f;
 
     private Vector3 previousFingerPos;
 
     Camera thisCamera;
-    LineRenderer lineRenderer;
 
-    Color lineColor_1_start = new Color (0, 1, 1, 1);
-    Color lineColor_1_end = new Color (1, 0, 1, 1);
     private int vertexCount = 0;
 
     void Awake () {
@@ -57,78 +48,55 @@ public class Line_Renderer_Aurora : MonoBehaviour {
         } else if (Input.GetMouseButton (0)) {
             //마우스 인풋이랑 카메라에서 일정거리 떨어진 z좌표를 가지고 그걸로 공간좌표를 환산
             //(z값이 속한 카메라 시선방향과의 접면으로 좌표를 이동시켜주지 않으면 마우스xy좌표가 너무 커서 선이 미칠듯이 길어짐)
-            tempFingerPos = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, thisCamera.nearClipPlane * 1000);
-            mouseWorld = thisCamera.ScreenToWorldPoint (tempFingerPos);
-            UpdateLine (mouseWorld);
-        } else {
-            // 입력이 없을 때는 퓨어데이터모듈에 데이터0을 보냄
-            //  pdPatch.SendFloat ("Playing", 0);
+            tempFingerPos = thisCamera.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, thisCamera.nearClipPlane * 100));
+            UpdateLine (tempFingerPos);
         }
 
+        //선 만들기가 끝났을 때 하는 행동
         if (Pvr_UnitySDKAPI.Controller.UPvr_GetKeyUp (0, Pvr_KeyCode.TRIGGER) || (Input.GetMouseButtonUp (0))) {
+            //현재 만들어진 오브젝트쪽 스크립트에 만들기가 끝났다는걸 bool을 true로 바꿔서 알려줌
             newLine.GetComponent<Aurora_edited> ().IsMakingDone = true;
-            // currentLine.GetComponent<Line_Stance> ().getDir ();
+            //updateLine에서 이루어지는 보간이 더이상 작동안하도록 해주는 조치(update함수에 설명있음)
+            previousFingerPos = new Vector3 (0, 0, 0);
         }
     }
 
     void CreateLine (bool loop) {
-
-        //currentLine = new GameObject ("line");
-        //lineRenderer = currentLine.AddComponent<LineRenderer> ();
-        //lineRenderer.material = new Material (Shader.Find ("Sprites/Default"));
+        //오로라 프리팹을 소환
         newLine = Instantiate (aurora, new Vector3 (0, 0, 0), Quaternion.identity);
 
-        //만들어진 라인이 공전하려면 월드스페이스 말고 오브젝트 포지션에 종속되어야함
-        //lineRenderer.useWorldSpace = false;
+        // 선 색깔 지정 (이 코드는 팔렛트 스크립트 짤 때엔 그쪽으로 옮겨갈거임)
+        newLine.GetComponent<Aurora_edited> ().GradientSet (new Color (255, 0, 0));
 
-        // 지정해놓은 public 변수에 맞춰서 선의 width값 지정해주는 거 추가함
-        //lineRenderer.startWidth = startWidth;
-        //lineRenderer.endWidth = endWidth;
+        //
+        //newLine.GetComponent<Aurora_edited> ().auroraParticlesCount = 3000;
 
-        // 선 색깔 지정
-        //lineRenderer.startColor = lineColor_1_start;
-        //lineRenderer.endColor = lineColor_1_end;
-        newLine.GetComponent<Aurora_edited> ().GradientSet (new Color (0, 255, 255));
-
-        // Line의 vertex 개수를 세는 변수를 초기화
-        vertexCount = 0;
-        newLine.GetComponent<Aurora_edited> ().auroraParticlesCount = 3000;
-        //처음 Line을 만들면 vertex가 기본적으로 두 개 생김. 이걸 없애야 함.
-        //lineRenderer.positionCount = 0;
-
-        //line이 만들어지고 난 후의 움직임을 관리하는 스크립트를 line에 붙여줌
-        // currentLine.AddComponent<Line_Stance> ();
-        //  newLine.GetComponent<Line_Stance> ().FadeSpeed = 0.1f;
-        //  if (loop) { newLine.GetComponent<Line_Stance> ().loop = true; } else { newLine.GetComponent<Line_Stance> ().loop = false; }
     }
 
     void UpdateLine (Vector3 newFingerPos) {
-        //현재 좌표에 맞춰 소리 내기. (컴퓨터에선 작동하는데 VR빌드하면 스크립트 전체가 마비됨)
-        // pdPatch.SendFloat ("Playing", 1);
-        //pdPatch.SendFloat ("mouseY", (int) ((newFingerPos.y + 17) / 2.43));
 
-        //newLine.GetComponent<Aurora_edited> ().auroraParticlesCount++;
-        if (newLine.GetComponent<Aurora_edited> ().IsMakingDone==false) {
-            int bogan = (int) (Vector3.Distance(newFingerPos,previousFingerPos)*5);
-            for (int i = 1; i < bogan; i++)
-            {
-            newLine.GetComponent<Aurora_edited> ().vertexs.Add (Vector3.Lerp(previousFingerPos,newFingerPos,i/bogan));
+        // 선을 다 만들면 previousFingerPos가 0,0,0으로 세팅되게 해 두었음. 따라서 선을 처음 만들기 시작할땐 보간을 하지 않음
+        if (previousFingerPos != new Vector3 (0, 0, 0)) {
+            // 보간이 얼마나 촘촘하게 이뤄질지 distance 함수 뒤에 있는 계수로 정함
+            int bogan = (int) (Vector3.Distance (newFingerPos, previousFingerPos) * 30);
+            for (float i = 1; i < bogan; i++) {
+                //파티클 위치값 추가 (for문의 반복회수(보간이 이루어지도록 설정한 거리)만큼 이전 위치와 현재 위치 사이를 나누어 촘촘하게 함)
+                newLine.GetComponent<Aurora_edited> ().vertexs.Add (Vector3.Lerp (previousFingerPos, newFingerPos, i / bogan));
+
             }
-             Debug.LogWarning(bogan);
+            //몇번의 보간이 이뤄졌는지 보고
+            //Debug.LogWarning (bogan);
+
         }
-        
+
+        //보간작업이 끝나면 previousFingerPos를 다음 프레임을 위해 갱신
         previousFingerPos = newFingerPos;
+
+        //파티클 위치값 추가
         newLine.GetComponent<Aurora_edited> ().vertexs.Add (newFingerPos);
 
-       
-
-        //newLine.GetComponent<Aurora_edited> ().SetParticleCount ();
-
-        //vertexCount++;
-
-        //lineRenderer.positionCount++;
-        //lineRenderer.SetPosition (vertexCount, newFingerPos);
-
+        //vertex란 List에 위치값을 추가해준 만큼 파티클의 개수도 같이 늘림
+        newLine.GetComponent<Aurora_edited> ().SetParticleCount ();
     }
 
 }

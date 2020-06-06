@@ -8,6 +8,7 @@ namespace ProceduralAurora
 
     public class AuroraMain : MonoBehaviour
     {
+        /*
         [Header("Audio Visualizer")]
         public bool useAudioSourceVisualization;
         public AudioSource audioSource;
@@ -27,6 +28,7 @@ namespace ProceduralAurora
         public float audioVisualizePositionOffsetMutliplier;
         public float audioHeightMultiplier;
         public Gradient audioColorGradient;
+        */
 
         [Header("Base Settings")]
         public int auroraSeed;
@@ -104,6 +106,7 @@ namespace ProceduralAurora
             if (auroraLights)
                 InitializeLights();
 
+            /*
             //Prepare audio visualizer
             if (useAudioSourceVisualization)
             {
@@ -115,7 +118,7 @@ namespace ProceduralAurora
                     Debug.LogError("[Procedural Aurora] Audio Samples value is incorrect! It should be less or equal to Aurora Particles Count");
                 aSamples = new float[audioSamples];
                 aBuffer = new float[audioSamples];
-            }
+            }*/
         }
 
         //Lights Initialization
@@ -141,7 +144,7 @@ namespace ProceduralAurora
         private void FixedUpdate()
         {
             float aAmplitude = 0;
-            if (useAudioSourceVisualization)
+           /* if (useAudioSourceVisualization)
             {
                 audioSource.GetSpectrumData(aSamples, 0, audioSamplingWindow);
                 for (int s = 0; s < aSamples.Length; s++)
@@ -151,7 +154,7 @@ namespace ProceduralAurora
                     aAmplitude += aBuffer[s];
                 }
                 aAmplitude /= aSamples.Length;
-            }
+            }*/
 
             float angleOffset = 0;
             int lightOffset = (auroraParticlesCount - 1) / auroraLightsCount;
@@ -161,17 +164,22 @@ namespace ProceduralAurora
             for (int i = 0; i < p_Particles.Length; i++)
             {
                 float time = i / (float)(p_Particles.Length - 1);
-                int sample = (int)((audioSamples - 1) * time * (1f - audioFrequenciesScale));
+               // int sample = (int)((audioSamples - 1) * time * (1f - audioFrequenciesScale));
                 float perlin = 0;
-                if (useAudioSourceVisualization && audioVisualizeFrequency != AudioVisualizationSource.None)
+
+                /*if (useAudioSourceVisualization && audioVisualizeFrequency != AudioVisualizationSource.None)
                     perlin = Mathf.PerlinNoise(Time.time * auroraAnimationFrequency * aAmplitude, time * auroraCurvature);
-                else
+                
+                */
+                
                     perlin = Mathf.PerlinNoise(Time.time * auroraAnimationFrequency, time * auroraCurvature);
                 float offset = perlin * 2f - 1f;
 
+                /*
                 if (useAudioSourceVisualization && audioVisualizePositionOffset != AudioVisualizationSource.None)
                     offset *= aAmplitude * audioVisualizePositionOffsetMutliplier;
 
+                */
                 Vector3 p_Position;
                 if (auroraCircular)
                     p_Position = Quaternion.Euler(0, auroraRotation + angleOffset, 0) * new Vector3(offset * auroraSizes.x, 0, auroraSizes.z) + transform.position;
@@ -180,7 +188,7 @@ namespace ProceduralAurora
                 Color p_Color = auroraColorMain.Evaluate(time);
 
                 float sizeY = auroraSizes.y;
-
+/*
                 if (useAudioSourceVisualization)
                 {
                     if (audioVisualizeColorGradient == AudioVisualizationSource.AvgAmplitude)
@@ -195,7 +203,7 @@ namespace ProceduralAurora
                         sizeY = aAmplitude * auroraSizes.y * audioHeightMultiplier;
                     if (audioVisualizeHeight == AudioVisualizationSource.Frequencies)
                         sizeY = Mathf.SmoothStep(0, 1, aBuffer[sample]) * auroraSizes.y * audioHeightMultiplier;
-                }
+                }*/
 
                 p_Particles[i].position = p_Position + new Vector3(0, sizeY / 3f, 0);
                 p_Particles[i].startSize3D = new Vector3(auroraParticleThickness, sizeY, auroraParticleThickness);
