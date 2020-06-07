@@ -337,7 +337,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 679479369}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 256
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 0
@@ -768,7 +768,6 @@ MonoBehaviour:
   aurora: {fileID: 5727458154255528717, guid: 8ee02f504f8518b43ae612a0f5169a91, type: 3}
   startWidth: 0.1
   endWidth: 0.1
-  threshold: 0.001
 --- !u!1001 &2140692658
 PrefabInstance:
   m_ObjectHideFlags: 0

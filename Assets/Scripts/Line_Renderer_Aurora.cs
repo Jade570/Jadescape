@@ -66,8 +66,8 @@ public class Line_Renderer_Aurora : MonoBehaviour {
         newLine = Instantiate (aurora, new Vector3 (0, 0, 0), Quaternion.identity);
 
         // 선 색깔 지정 (이 코드는 팔렛트 스크립트 짤 때엔 그쪽으로 옮겨갈거임)
-        newLine.GetComponent<Aurora_edited> ().GradientSet (new Color (255, 0, 0));
-
+        newLine.GetComponent<Aurora_edited> ().GradientSet (new Color (250, 0, 250));
+        newLine.GetComponent<Aurora_edited> ().loop = loop;
         //
         //newLine.GetComponent<Aurora_edited> ().auroraParticlesCount = 3000;
 
