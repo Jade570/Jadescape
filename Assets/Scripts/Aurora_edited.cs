@@ -171,6 +171,7 @@ public class Aurora_edited : MonoBehaviour {
 
             }
             pSystem.SetParticles (p_Particles, vertexs.Count);
+           
             //오로라 오브젝트만 블러처리가 되도록 카메라에 컴포넌트를 달아두었음. 그러려면 레이어8에 지정되어야함
 
         }

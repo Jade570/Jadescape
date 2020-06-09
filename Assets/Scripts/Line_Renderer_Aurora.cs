@@ -16,15 +16,9 @@ public class Line_Renderer_Aurora : MonoBehaviour {
 
     private Vector3 tempFingerPos;
 
-    public float startWidth = 0.1f;
-    public float endWidth = 0.1f;
-
     private Vector3 previousFingerPos;
 
     Camera thisCamera;
-
-    private int vertexCount = 0;
-
     bool PalleteToggle;
     Vector2 TouchPos;
     float ColorPos;
@@ -38,6 +32,7 @@ public class Line_Renderer_Aurora : MonoBehaviour {
 
         //컬러 팔레트 관련 초기화
         PalleteToggle = false;
+        ColorPallete.SetActive (PalleteToggle);
         PalleteColor = new Color (255, 0, 0);
         CurrentCollorDisplay.GetComponent<Image> ().color = PalleteColor;
     }
@@ -48,29 +43,36 @@ public class Line_Renderer_Aurora : MonoBehaviour {
     }
 
     void ColorPalleteInteraction () {
-        if (Controller.UPvr_GetKeyDown (0, Pvr_KeyCode.TOUCHPAD)) {
-            if (PalleteToggle) {
-                PalleteToggle = !PalleteToggle;
-                //토글모드에 맞춰 UI 끄고 켜는거 변경
-                ColorPallete.SetActive (PalleteToggle);
-            } else {
-                //현재 골라둔 색깔로 오로라 색깔 선택
-                PalleteColor = Color.HSVToRGB (ColorPos, 1, 1);
-                PalleteToggle = !PalleteToggle;
-                //토글모드에 맞춰 UI 끄고 켜는거 변경
-                ColorPallete.SetActive (PalleteToggle);
-            }
+        if (Controller.UPvr_GetKeyDown (0, Pvr_KeyCode.TOUCHPAD) || Input.GetMouseButtonDown (2)) {
+            PalleteToggle = true;
+            ColorPallete.SetActive (PalleteToggle);
         }
 
         if (PalleteToggle) {
 
-            TouchPos = Controller.UPvr_GetTouchPadPosition (0);
-            //(추후 확인 필요) atan2의 치역이 -90에서 90인지 아닌지 아직 확인안했음.
-            //터치패드의 위치를 중심점에서의 각도로 변환한 뒤 0-1범위의 hue값에 집어넣기 위해 변환
-            ColorPos = Mathf.Atan2 (TouchPos.y - 127, TouchPos.x - 127) * Mathf.Rad2Deg / 360;
+            if (Input.GetMouseButton (2)) {
+                TouchPos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
+                ColorPos = Mathf.Atan2 (TouchPos.y - Screen.height / 2, TouchPos.x - Screen.width / 2) * Mathf.Rad2Deg / 360;
+            } else if (Controller.UPvr_IsTouching (0)) {
+                //(추후 확인 필요) atan2의 치역이 -90에서 90인지 아닌지 아직 확인안했음.
+                //터치패드의 위치를 중심점에서의 각도로 변환한 뒤 0-1범위의 hue값에 집어넣기 위해 변환
+                TouchPos = Controller.UPvr_GetTouchPadPosition (0);
+                ColorPos = Mathf.Atan2 (TouchPos.y - 127, TouchPos.x - 127) * Mathf.Rad2Deg / 360;
+            }
 
+            if (ColorPos < 0) {
+                ColorPos += 1.0f;
+            }
             CurrentCollorDisplay.GetComponent<Image> ().color = Color.HSVToRGB (ColorPos, 1, 1);
         }
+
+        if (Controller.UPvr_GetKeyUp (0, Pvr_KeyCode.TOUCHPAD) || (Input.GetMouseButtonUp (2))) {
+            //현재 골라둔 색깔로 오로라 색깔 선택
+            PalleteColor = Color.HSVToRGB (ColorPos, 1, 1);
+            PalleteToggle = false;
+            ColorPallete.SetActive (PalleteToggle);
+        }
+
     }
     void LineInteraction () {
         //클릭 시작하면 Line을 만듬
