@@ -500,6 +500,12 @@ Transform:
   m_Father: {fileID: 726556643}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &390814849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3802051574076634095, guid: 7e54d9a2dcc97dc419b5c5dc91827090,
+    type: 3}
+  m_PrefabInstance: {fileID: 869558619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &528014557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1248,6 +1254,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 869558619}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1274924586 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5248970900356044590, guid: 7e54d9a2dcc97dc419b5c5dc91827090,
+    type: 3}
+  m_PrefabInstance: {fileID: 869558619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1570814237 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 428262, guid: f4d2c95a82cadba4fb259ca17b5a8404,
@@ -1519,7 +1531,8 @@ MonoBehaviour:
   aurora: {fileID: 5727458154255528717, guid: 8ee02f504f8518b43ae612a0f5169a91, type: 3}
   startWidth: 0.1
   endWidth: 0.1
-  threshold: 0.001
+  ColorPallete: {fileID: 1274924586}
+  CurrentCollorDisplay: {fileID: 390814849}
 --- !u!1 &2137023104
 GameObject:
   m_ObjectHideFlags: 0

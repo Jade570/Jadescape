@@ -76,10 +76,10 @@ MonoBehaviour:
     key0: {r: 0.16927983, g: 0.74264705, b: 0.29186174, a: 0}
     key1: {r: 0.10726642, g: 0.3954181, b: 0.4705882, a: 0.19215687}
     key2: {r: 0.014705896, g: 1, b: 0.30689654, a: 0.34509805}
-    key3: {r: 0.1189879, g: 0.77413, b: 0.99050707, a: 0.43529412}
-    key4: {r: 0.4664478, g: 0.33251917, b: 0.10495075, a: 0.46666667}
-    key5: {r: 0.45698398, g: 0.32577264, b: 0.10282139, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0.1189879, g: 0.77413, b: 0.99050707, a: 1}
+    key4: {r: 0.4664478, g: 0.33251917, b: 0.10495075, a: 1}
+    key5: {r: 0.45698398, g: 0.32577264, b: 0.10282139, a: 0.43529412}
+    key6: {r: 0, g: 0, b: 0, a: 0.46666667}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 14842
     ctime1: 32189
@@ -92,14 +92,14 @@ MonoBehaviour:
     atime0: 0
     atime1: 10023
     atime2: 17348
-    atime3: 48959
-    atime4: 56283
-    atime5: 65535
-    atime6: 65535
+    atime3: 25250
+    atime4: 37394
+    atime5: 48959
+    atime6: 56283
     atime7: 65535
     m_Mode: 0
     m_NumColorKeys: 4
-    m_NumAlphaKeys: 6
+    m_NumAlphaKeys: 8
   auroraMaterialMain: {fileID: 2100000, guid: 43cfe7bfdef565b43b248e321a24e9ce, type: 2}
   IsMakingDone: 0
   loop: 0

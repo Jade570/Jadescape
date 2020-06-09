@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using Pvr_UnitySDKAPI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Line_Renderer_Aurora : MonoBehaviour {
 
@@ -24,14 +25,56 @@ public class Line_Renderer_Aurora : MonoBehaviour {
 
     private int vertexCount = 0;
 
+    bool PalleteToggle;
+    Vector2 TouchPos;
+    float ColorPos;
+    Color PalleteColor;
+    public GameObject ColorPallete;
+    public GameObject CurrentCollorDisplay;
+
     void Awake () {
+        //PC 시뮬레이션을 위한 카메라 가져오기 - 이거 카메라 굳이 안가져오고 mainCamera 함수쓰면 될거같은데
         thisCamera = Camera2.GetComponent<Camera> ();
 
+        //컬러 팔레트 관련 초기화
+        PalleteToggle = false;
+        PalleteColor = new Color (255, 0, 0);
+        CurrentCollorDisplay.GetComponent<Image> ().color = PalleteColor;
     }
 
     void Update () {
+        LineInteraction ();
+        ColorPalleteInteraction ();
+    }
+
+    void ColorPalleteInteraction () {
+        if (Controller.UPvr_GetKeyDown (0, Pvr_KeyCode.TOUCHPAD)) {
+            if (PalleteToggle) {
+                PalleteToggle = !PalleteToggle;
+                //토글모드에 맞춰 UI 끄고 켜는거 변경
+                ColorPallete.SetActive (PalleteToggle);
+            } else {
+                //현재 골라둔 색깔로 오로라 색깔 선택
+                PalleteColor = Color.HSVToRGB (ColorPos, 1, 1);
+                PalleteToggle = !PalleteToggle;
+                //토글모드에 맞춰 UI 끄고 켜는거 변경
+                ColorPallete.SetActive (PalleteToggle);
+            }
+        }
+
+        if (PalleteToggle) {
+
+            TouchPos = Controller.UPvr_GetTouchPadPosition (0);
+            //(추후 확인 필요) atan2의 치역이 -90에서 90인지 아닌지 아직 확인안했음.
+            //터치패드의 위치를 중심점에서의 각도로 변환한 뒤 0-1범위의 hue값에 집어넣기 위해 변환
+            ColorPos = Mathf.Atan2 (TouchPos.y - 127, TouchPos.x - 127) * Mathf.Rad2Deg / 360;
+
+            CurrentCollorDisplay.GetComponent<Image> ().color = Color.HSVToRGB (ColorPos, 1, 1);
+        }
+    }
+    void LineInteraction () {
         //클릭 시작하면 Line을 만듬
-        if (Pvr_UnitySDKAPI.Controller.UPvr_GetKeyDown (0, Pvr_KeyCode.TRIGGER) || Input.GetMouseButtonDown (0)) {
+        if (Controller.UPvr_GetKeyDown (0, Pvr_KeyCode.TRIGGER) || Input.GetMouseButtonDown (0)) {
             // 마우스 오른쪽 버튼이 눌려있거나, 컨트롤러의 앱 버튼이 눌려있으면 루프음이 됨
             if (Pvr_UnitySDKAPI.Controller.UPvr_GetKey (0, Pvr_KeyCode.APP) || Input.GetMouseButton (1)) {
                 CreateLine (true);
@@ -41,7 +84,7 @@ public class Line_Renderer_Aurora : MonoBehaviour {
         }
 
         //클릭한 채로 유지하고 있으면 Line을 연장함
-        if (Pvr_UnitySDKAPI.Controller.UPvr_GetKey (0, Pvr_KeyCode.TRIGGER)) {
+        if (Controller.UPvr_GetKey (0, Pvr_KeyCode.TRIGGER)) {
             //dot2는 controller0(첫번째 컨트롤러)의 자손 오브젝트인데, 컨트롤러가 가리키는 방향쪽에 항상 떠 있음
             tempFingerPos = new Vector3 (dot2.transform.position.x, dot2.transform.position.y, dot2.transform.position.z);
             UpdateLine (tempFingerPos);
@@ -53,7 +96,7 @@ public class Line_Renderer_Aurora : MonoBehaviour {
         }
 
         //선 만들기가 끝났을 때 하는 행동
-        if (Pvr_UnitySDKAPI.Controller.UPvr_GetKeyUp (0, Pvr_KeyCode.TRIGGER) || (Input.GetMouseButtonUp (0))) {
+        if (Controller.UPvr_GetKeyUp (0, Pvr_KeyCode.TRIGGER) || (Input.GetMouseButtonUp (0))) {
             //현재 만들어진 오브젝트쪽 스크립트에 만들기가 끝났다는걸 bool을 true로 바꿔서 알려줌
             newLine.GetComponent<Aurora_edited> ().IsMakingDone = true;
             //updateLine에서 이루어지는 보간이 더이상 작동안하도록 해주는 조치(update함수에 설명있음)
@@ -65,11 +108,10 @@ public class Line_Renderer_Aurora : MonoBehaviour {
         //오로라 프리팹을 소환
         newLine = Instantiate (aurora, new Vector3 (0, 0, 0), Quaternion.identity);
 
-        // 선 색깔 지정 (이 코드는 팔렛트 스크립트 짤 때엔 그쪽으로 옮겨갈거임)
-        newLine.GetComponent<Aurora_edited> ().GradientSet (new Color (250, 0, 250));
+        // 선 색깔 지정
+        newLine.GetComponent<Aurora_edited> ().GradientSet (PalleteColor);
+
         newLine.GetComponent<Aurora_edited> ().loop = loop;
-        //
-        //newLine.GetComponent<Aurora_edited> ().auroraParticlesCount = 3000;
 
     }
 
