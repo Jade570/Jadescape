@@ -95,33 +95,65 @@ public class Chord_Generator : MonoBehaviour
             f3[i] = mtof(mid3);
             f4[i] = mtof(mid4);
         }
+
+        for (int i = 0; i < 4; i++)
+        {
+            aud[i] = audi[i].GetComponent<AudioSource>();
+            aud[i].volume = 0.2f;
+        }
+
+
+
+
         InvokeRepeating("clock", 0f, metro);
         InvokeRepeating("updatewave", 0f, metro);
+        InvokeRepeating("volumeup", 0f, metro);
+        InvokeRepeating("volumedown", metro/2, metro);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
 
-           
-  
+        if ((Time.time%metro < metro/4 && Time.time % metro >= 0) ||
+            (Time.time%metro < metro/4*3 && Time.time % metro >= metro / 4 * 2))
+        {
+            volumeup();
+        }
+        else
+        {
+            //Debug.Log("here");
+            volumedown();
+        }
 
     }
+
+    void volumeup()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            aud[i].volume += 0.001f;
+        }
+    }
+    void volumedown()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            aud[i].volume -= 0.0015f;
+        }
+    }
+
+
 
     void clock()
     {
         currentchord += 1;
+
     }
 
 
     public void updatewave()
     {
-        for (int i = 0; i< 4; i++)
-        {
-            aud[i] = audi[i].GetComponent<AudioSource>();
-        }
-
         for (int i = 0; i < samples0.Length; i++)
         {
             samples0[i] = Mathf.Sin(Mathf.PI * 2 * i * f1[chord_progress[currentchord % 4]-1] / sampleFreq);
@@ -141,14 +173,10 @@ public class Chord_Generator : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             aud[i].clip = ac[i];
-            aud[i].volume = 0.3f;
+            aud[i].volume = 0.05f;
             aud[i].Play();
-            //aud[0].PlayOneShot(ac[i],0.3f);
+
         }
-        //aud[0].PlayOneShot(ac[0], 0.3f);
-        //aud[0].PlayOneShot(ac[1], 0.3f);
-        //aud[0].PlayOneShot(ac[2], 0.3f);
-        //aud[0].PlayOneShot(ac[3], 0.3f);
 
     }
 
@@ -169,6 +197,4 @@ public class Chord_Generator : MonoBehaviour
         float metro = 60/(bpm/4);
         return metro;
     }
-
-
 }

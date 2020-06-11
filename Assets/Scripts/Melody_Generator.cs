@@ -20,9 +20,11 @@ public class Melody_Generator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        aud = GetComponent<AudioSource>();
         pfrequency = frequency;
         updatewave();
-        
+        aud.volume = 0.25f;
+
     }
 
     // Update is called once per frame
@@ -99,7 +101,6 @@ public class Melody_Generator : MonoBehaviour
                 pfrequency = frequency;
           
             }
-            Debug.Log(frequency);
         }
         else if(Pvr_UnitySDKAPI.Controller.UPvr_GetKeyUp(0, Pvr_KeyCode.TRIGGER) || Input.GetMouseButtonUp(0))
         {
@@ -110,7 +111,7 @@ public class Melody_Generator : MonoBehaviour
 
     public void updatewave()
     {
-        aud = GetComponent<AudioSource>();
+        
         for (int i = 0; i < samples.Length; i++)
         {
             samples[i] = Mathf.Sin(Mathf.PI * 2 * i * frequency / sampleFreq);
