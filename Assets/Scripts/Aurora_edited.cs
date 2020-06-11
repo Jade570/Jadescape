@@ -60,6 +60,7 @@ public class Aurora_edited : MonoBehaviour {
         //Create particle system
         pSystem = m_Particle.AddComponent<ParticleSystem> ();
         pRenderer = m_Particle.GetComponent<ParticleSystemRenderer> ();
+
         p_mEmission = pSystem.emission;
         p_mMain = pSystem.main;
 
@@ -82,6 +83,17 @@ public class Aurora_edited : MonoBehaviour {
         auroraTransparency = 0.3f;
 
         pRenderer.renderingLayerMask = 8;
+
+        //collision 모듈 어떻게 스크립트로 켜는지 몰라서 그냥 API문서 복붙함
+        ParticleSystem ps;
+        ps = m_Particle.GetComponent<ParticleSystem> ();
+        var collision = ps.collision;
+        collision.enabled = true;
+
+        // API 문서 검색해서 간신히 알아냄
+        collision.type = ParticleSystemCollisionType.World;
+        collision.mode = ParticleSystemCollisionMode.Collision3D;
+        collision.quality = ParticleSystemCollisionQuality.Low;
     }
 
     public void SetParticleCount () {
@@ -171,8 +183,6 @@ public class Aurora_edited : MonoBehaviour {
 
             }
             pSystem.SetParticles (p_Particles, vertexs.Count);
-           
-            //오로라 오브젝트만 블러처리가 되도록 카메라에 컴포넌트를 달아두었음. 그러려면 레이어8에 지정되어야함
 
         }
 
