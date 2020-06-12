@@ -133,14 +133,14 @@ public class Chord_Generator : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            aud[i].volume += 0.001f;
+            aud[i].volume += 0.0015f;
         }
     }
     void volumedown()
     {
         for (int i = 0; i < 4; i++)
         {
-            aud[i].volume -= 0.0015f;
+            aud[i].volume -= 0.003f;
         }
     }
 
@@ -157,10 +157,17 @@ public class Chord_Generator : MonoBehaviour
     {
         for (int i = 0; i < samples0.Length; i++)
         {
-            samples0[i] = Mathf.Sin(Mathf.PI * 2 * i * f1[chord_progress[currentchord % 4]-1] / sampleFreq);
+            samples0[i] = Mathf.PingPong(i * 2f * f1[chord_progress[currentchord % 4] - 1] / sampleFreq, 1) * 2f - 1f;
+            samples1[i] = Mathf.PingPong(i * 2f * f2[chord_progress[currentchord % 4] - 1] / sampleFreq, 1) * 2f - 1f;
+            samples2[i] = Mathf.PingPong(i * 2f * f3[chord_progress[currentchord % 4] - 1] / sampleFreq, 1) * 2f - 1f;
+            samples3[i] = Mathf.PingPong(i * 2f * f4[chord_progress[currentchord % 4] - 1] / sampleFreq, 1) * 2f - 1f;
+
+
+
+/*           samples0[i] = Mathf.Sin(Mathf.PI * 2 * i * f1[chord_progress[currentchord % 4]-1] / sampleFreq);
             samples1[i] = Mathf.Sin(Mathf.PI * 2 * i * f2[chord_progress[currentchord % 4]-1] / sampleFreq);
             samples2[i] = Mathf.Sin(Mathf.PI * 2 * i * f3[chord_progress[currentchord % 4]-1] / sampleFreq);
-            samples3[i] = Mathf.Sin(Mathf.PI * 2 * i * f4[chord_progress[currentchord % 4]-1] / sampleFreq);
+            samples3[i] = Mathf.Sin(Mathf.PI * 2 * i * f4[chord_progress[currentchord % 4]-1] / sampleFreq); */
         }
 
         for (int i = 0; i<4; i++)
@@ -174,7 +181,7 @@ public class Chord_Generator : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             aud[i].clip = ac[i];
-            aud[i].volume = 0.1f;
+            aud[i].volume = 0.2f;
             aud[i].Play();
 
         }

@@ -23,7 +23,7 @@ public class Melody_Generator : MonoBehaviour
         aud = GetComponent<AudioSource>();
         pfrequency = frequency;
         updatewave();
-        aud.volume = 0.5f;
+        aud.volume = 0.2f;
 
     }
 
@@ -112,10 +112,13 @@ public class Melody_Generator : MonoBehaviour
     public void updatewave()
     {
         
+
         for (int i = 0; i < samples.Length; i++)
         {
-            samples[i] = Mathf.Sin(Mathf.PI * 2 * i * frequency / sampleFreq);
+            samples[i] = Mathf.Repeat(i * frequency / sampleFreq, 1) * 1f - 0.5f;
+            samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? 0.5f : -0.5f;
         }
+
         ac = AudioClip.Create("sine", samples.Length, 1, sampleFreq, false);
         ac.SetData(samples, 0);
         aud.clip = ac;
