@@ -21,7 +21,7 @@ public class Line_Renderer_Aurora : MonoBehaviour {
     Camera thisCamera;
     bool PalleteToggle;
     Vector2 TouchPos;
-    float ColorPos;
+    public float ColorPos;
     Color PalleteColor;
     public GameObject ColorPallete;
     public GameObject CurrentCollorDisplay;

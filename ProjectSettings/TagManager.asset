@@ -26,6 +26,7 @@ TagManager:
   - 16
   - 17
   - 18
+  - melody
   layers:
   - Default
   - TransparentFX

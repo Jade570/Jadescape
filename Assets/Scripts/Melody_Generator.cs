@@ -12,15 +12,18 @@ public class Melody_Generator : MonoBehaviour
     public GameObject dot2;
 
     private float[] samples = new float[48000];
+    float colorPos;
     public AudioClip ac;
     public AudioSource aud;
 
     double divisor = 1600 / 14;
 
+
     // Start is called before the first frame update
     void Start()
     {
         aud = GetComponent<AudioSource>();
+        colorPos = GameObject.FindWithTag("GameController").GetComponent<Line_Renderer_Aurora>().ColorPos; //hue 0~1
         pfrequency = frequency;
         updatewave();
         aud.volume = 0.2f;
@@ -93,14 +96,13 @@ public class Melody_Generator : MonoBehaviour
         {
 
             if (pfrequency != frequency)
-            {
-                
+            {               
                 updatewave();
-                aud.Play();
-                
                 pfrequency = frequency;
-          
+                aud.Play();
+
             }
+
         }
         else if(Pvr_UnitySDKAPI.Controller.UPvr_GetKeyUp(0, Pvr_KeyCode.TRIGGER) || Input.GetMouseButtonUp(0))
         {
@@ -115,8 +117,10 @@ public class Melody_Generator : MonoBehaviour
 
         for (int i = 0; i < samples.Length; i++)
         {
-            samples[i] = Mathf.Repeat(i * frequency / sampleFreq, 1) * 1f - 0.5f;
-            samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? 0.5f : -0.5f;
+
+                samples[i] = Mathf.Repeat(i * frequency / sampleFreq, 1) * colorPos * 2 - colorPos;
+                samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? 1 - colorPos : -(1 - colorPos);
+
         }
 
         ac = AudioClip.Create("sine", samples.Length, 1, sampleFreq, false);

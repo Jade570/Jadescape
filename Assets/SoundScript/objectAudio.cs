@@ -37,6 +37,7 @@ public class objectAudio : MonoBehaviour {
                 GameObject.FindWithTag(hits[0].transform.name).GetComponent<objectPlay>().clickTrigger = true;
             }
 
+
             
         }
 
