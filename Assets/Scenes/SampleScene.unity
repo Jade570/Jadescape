@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.05172742, g: 0.049817294, b: 0.05252351, a: 1}
+  m_IndirectSpecularColor: {r: 0.05144009, g: 0.049263597, b: 0.052063458, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sampleFreq: 48000
-  bpm: 120
+  BPM: {fileID: 0}
   metro: 0
   chord_progress: 02000000050000000100000004000000
   currentchord: 0
@@ -980,12 +980,6 @@ CapsuleCollider:
   m_Height: 4.0847797
   m_Direction: 1
   m_Center: {x: 0.07531727, y: 0.14768219, z: -0.0939802}
---- !u!20 &529733586 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2014064, guid: f4d2c95a82cadba4fb259ca17b5a8404,
-    type: 3}
-  m_PrefabInstance: {fileID: 2140692658}
-  m_PrefabAsset: {fileID: 0}
 --- !u!20 &544240911 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2063796, guid: f4d2c95a82cadba4fb259ca17b5a8404,
@@ -1534,6 +1528,51 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 3.9979498
   m_Center: {x: 0, y: 0, z: 0.0000019073486}
+--- !u!1 &834106310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 834106312}
+  - component: {fileID: 834106311}
+  m_Layer: 0
+  m_Name: bpm
+  m_TagString: bpm
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &834106311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834106310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 274f643562f68b446935038c04a0dc86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bpm: 120
+  metro: 0
+--- !u!4 &834106312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834106310}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.4286804, y: 14.221241, z: 3.6974297}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &849696909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4480,6 +4519,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb486c4c0d646b49bd8e3c7069ea8cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1977823768 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4314101167297202, guid: 7e54d9a2dcc97dc419b5c5dc91827090,
+    type: 3}
+  m_PrefabInstance: {fileID: 869558619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2092396752
 GameObject:
   m_ObjectHideFlags: 0
@@ -4489,7 +4534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2092396753}
-  - component: {fileID: 2092396754}
+  - component: {fileID: 2092396755}
   m_Layer: 0
   m_Name: objects
   m_TagString: Untagged
@@ -4530,7 +4575,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2092396754
+--- !u!114 &2092396755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4539,11 +4584,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 2092396752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25ca04a3755ba49d98676fced2d3557f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   coll: {fileID: 0}
-  cam: {fileID: 529733586}
+  aud: {fileID: 0}
+  cam: {fileID: 0}
+  parentobject: {fileID: 2092396752}
+  asteroids:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  BPM: {fileID: 0}
+  metro: 0
+  controller0Position: {fileID: 1977823768}
 --- !u!1 &2133430715
 GameObject:
   m_ObjectHideFlags: 0

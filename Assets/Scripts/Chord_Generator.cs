@@ -6,7 +6,7 @@ using System;
 public class Chord_Generator : MonoBehaviour
 {
     public int sampleFreq = 48000;
-    public int bpm = 120;
+    public GameObject BPM;
     public float metro;
 
     public int[] chord_progress = new int[4];
@@ -28,7 +28,7 @@ public class Chord_Generator : MonoBehaviour
 
     void Start() //set chord midis
     {
-        metro = bpmtometro(bpm);
+        metro = GameObject.FindWithTag("bpm").GetComponent<Beat_Calculator>().metro;
 
         int mid1 = 48;
         int mid2 = 52;
@@ -114,6 +114,7 @@ public class Chord_Generator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        metro = GameObject.FindWithTag("bpm").GetComponent<Beat_Calculator>().metro;
 
         if ((Time.time%metro < metro/4 && Time.time % metro >= 0) ||
             (Time.time%metro < metro/4*3 && Time.time % metro >= metro / 4 * 2))
@@ -192,9 +193,5 @@ public class Chord_Generator : MonoBehaviour
         return freq;
     }
 
-    public float bpmtometro(float bpm)
-    {
-        float metro = 60/(bpm/4);
-        return metro;
-    }
+
 }

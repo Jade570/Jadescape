@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - objects
+  - bpm
   layers:
   - Default
   - TransparentFX
