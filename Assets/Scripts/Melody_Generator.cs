@@ -23,7 +23,7 @@ public class Melody_Generator : MonoBehaviour
         aud = GetComponent<AudioSource>();
         pfrequency = frequency;
         updatewave();
-        aud.volume = 0.25f;
+        aud.volume = 0.5f;
 
     }
 
