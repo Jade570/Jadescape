@@ -980,6 +980,12 @@ CapsuleCollider:
   m_Height: 4.0847797
   m_Direction: 1
   m_Center: {x: 0.07531727, y: 0.14768219, z: -0.0939802}
+--- !u!20 &529733586 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2014064, guid: f4d2c95a82cadba4fb259ca17b5a8404,
+    type: 3}
+  m_PrefabInstance: {fileID: 2140692658}
+  m_PrefabAsset: {fileID: 0}
 --- !u!20 &544240911 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2063796, guid: f4d2c95a82cadba4fb259ca17b5a8404,
@@ -4589,7 +4595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coll: {fileID: 0}
   aud: {fileID: 0}
-  cam: {fileID: 0}
+  cam: {fileID: 529733586}
   parentobject: {fileID: 2092396752}
   asteroids:
   - {fileID: 0}

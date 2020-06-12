@@ -43,9 +43,26 @@ public class objectAudio : MonoBehaviour
         metro = GameObject.FindWithTag("bpm").GetComponent<Beat_Calculator>().metro;
 
 
+        //vr
         if (RaycastFromHandInput())
         {
             PerformRaycast(controller0Position);
+        }
+
+
+        //pc
+        if (Input.GetMouseButtonDown(0))
+        {
+            //RaycastHit hit;
+            Ray ray1 = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit[] hits;
+            hits = Physics.RaycastAll(ray1);
+
+            if (hits.Length > 0)
+            {
+                //Debug.Log("x: " + controller0Position.eulerAngles.x + "y: " + controller0Position.eulerAngles.y + "z: " + controller0Position.eulerAngles.z);
+                Debug.Log("raycast activated");
+            }
         }
 
 
