@@ -19,7 +19,6 @@ public class objectPlay : MonoBehaviour
     {
         metro = GameObject.FindWithTag("bpm").GetComponent<Beat_Calculator>().metro;
         aud = this.gameObject.GetComponent<AudioSource>();
-        aud.volume = 0.5f;
         origScale = this.gameObject.GetComponent<Transform>();
         scale = origScale.localScale.x / 500f;
         clickTrigger = false;
