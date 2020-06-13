@@ -22,7 +22,7 @@ public class objectAudio : MonoBehaviour {
         metro = GameObject.FindWithTag ("bpm").GetComponent<Beat_Calculator> ().metro;
 
         //vr
-        if (Controller.UPvr_GetKeyDown (0, Pvr_KeyCode.TRIGGER)) {
+        if (Controller.UPvr_GetKeyDown (0, Pvr_KeyCode.APP)) {
 
             Ray ray1 = new Ray ();
             ray1.direction = controller0Position.transform.TransformDirection(0,-0.33f,1);
