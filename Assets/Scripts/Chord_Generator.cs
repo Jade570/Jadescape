@@ -15,13 +15,11 @@ public class Chord_Generator : MonoBehaviour
     public float[] f2 = new float[8];
     public float[] f3 = new float[8];
     public float[] f4 = new float[8];
-    public float[] fbass = new float[8];
 
     private float[] samples0 = new float[48000];
     private float[] samples1 = new float[48000];
     private float[] samples2 = new float[48000];
     private float[] samples3 = new float[48000];
-    private float[] bass = new float[48000];
     public AudioClip[] ac = new AudioClip[5];
     public AudioSource[] aud = new AudioSource[5];
     public GameObject[] audi = new GameObject[5];
@@ -40,7 +38,6 @@ public class Chord_Generator : MonoBehaviour
         f2[0] = mtof(mid2);
         f3[0] = mtof(mid3);
         f4[0] = mtof(mid4);
-        fbass[0] = mtof(mid1 - 12);
 
         for (int i = 1; i < f1.Length; i++)
         {
@@ -97,7 +94,6 @@ public class Chord_Generator : MonoBehaviour
             f2[i] = mtof(mid2);
             f3[i] = mtof(mid3);
             f4[i] = mtof(mid4);
-            fbass[i] = mtof(mid1 - 12);
         }
 
         for (int i = 0; i < 5; i++)
@@ -107,13 +103,8 @@ public class Chord_Generator : MonoBehaviour
         }
 
 
-
-
         InvokeRepeating("clock", 0f, metro);
         InvokeRepeating("updatewave", 0f, metro);
-        InvokeRepeating("bassPlay", 0f, metro/2);
-        InvokeRepeating("volumeup", 0f, metro);
-        InvokeRepeating("volumedown", metro / 2, metro);
     }
 
     // Update is called once per frame
@@ -154,7 +145,6 @@ public class Chord_Generator : MonoBehaviour
     void clock()
     {
         currentchord += 1;
-
     }
 
 
@@ -170,34 +160,28 @@ public class Chord_Generator : MonoBehaviour
             samples1[i] += (Mathf.Repeat(i * f2[chord_progress[currentchord % 4] - 1] / sampleFreq, 1) > 0.5f) ? 0.15f : -0.2f;
             samples2[i] += (Mathf.Repeat(i * f3[chord_progress[currentchord % 4] - 1] / sampleFreq, 1) > 0.5f) ? 0.15f : -0.2f;
             samples3[i] += (Mathf.Repeat(i * f4[chord_progress[currentchord % 4] - 1] / sampleFreq, 1) > 0.5f) ? 0.15f : -0.2f;
-            bass[i] = Mathf.Sin(Mathf.PI * 2 * i * fbass[chord_progress[currentchord % 4] - 1] / sampleFreq);
         }
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 4; i++)
         {
             ac[i] = AudioClip.Create("sine" + i, samples0.Length, 1, sampleFreq, false);
         }
+
         ac[0].SetData(samples0, 0);
         ac[1].SetData(samples1, 0);
         ac[2].SetData(samples2, 0);
         ac[3].SetData(samples3, 0);
-        ac[4].SetData(bass, 0);
+
+
         for (int i = 0; i < 4; i++)
         {
             aud[i].clip = ac[i];
             aud[i].volume = 0.4f;
             aud[i].Play();
-
         }
 
     }
 
-    void bassPlay(){
-        aud[4].clip = ac[4];
-        aud[4].volume = 1f;
-        aud[4].Play();
-        
-    }
 
 
     public float mtof(double midi)

@@ -26,7 +26,7 @@ public class Melody_Generator : MonoBehaviour
         colorPos = GameObject.FindWithTag("GameController").GetComponent<Line_Renderer_Aurora>().ColorPos; //hue 0~1
         pfrequency = frequency;
         updatewave();
-        aud.volume = 0.2f;
+        aud.volume = 0.8f;
 
     }
 
@@ -117,23 +117,17 @@ public class Melody_Generator : MonoBehaviour
 
         for (int i = 0; i < samples.Length; i++)
         {
+            samples[i] = Mathf.Sin(Mathf.PI * 2 * i * frequency / sampleFreq) * 0.2f;
+            samples[i] += Mathf.Sin(Mathf.PI * 4 * i * frequency / sampleFreq) * 0.2f * colorPos;
+            samples[i] += Mathf.Sin(Mathf.PI * 7 * i * frequency / sampleFreq) * 0.2f * (1-colorPos);
+            samples[i] += Mathf.Sin(Mathf.PI * 3 * i * frequency / sampleFreq) * 0.2f * colorPos;
+            samples[i] += Mathf.Sin(Mathf.PI * 5 * i * frequency / sampleFreq) * 0.2f * (1-colorPos);
 
-                samples[i] = (Mathf.Repeat(i * frequency / sampleFreq, 1) * colorPos * 2 - colorPos) * 0.7f;
-                samples[i] += (Mathf.Repeat(i * frequency * 2 / sampleFreq, 1) * colorPos * 2 - colorPos) * 0.1f;
-                samples[i] += (Mathf.Repeat(i * frequency * 3 / sampleFreq, 1) * colorPos * 2 - colorPos) * 0.025f;
-                samples[i] += (Mathf.Repeat(i * frequency * 4 / sampleFreq, 1) * colorPos * 2 - colorPos) * 0.07f;
-                samples[i] += (Mathf.Repeat(i * frequency * 5 / sampleFreq, 1) * colorPos * 2 - colorPos) * 0.03f;
-                samples[i] += (Mathf.Repeat(i * frequency * 8 / sampleFreq, 1) * colorPos * 2 - colorPos) * 0.05f;
-                samples[i] += (Mathf.Repeat(i * frequency * 16 / sampleFreq, 1) * colorPos * 2 - colorPos) * 0.025f;
 
-                samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? (1 - colorPos)*0.7f : (-(1 - colorPos))*0.7f;
-                samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? (1 - colorPos)*0.1f : (-(1 - colorPos))*0.1f;
-                samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? (1 - colorPos)*0.025f : (-(1 - colorPos))*0.025f;
-                samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? (1 - colorPos)*0.07f : (-(1 - colorPos))*0.07f;
-                samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? (1 - colorPos)*0.03f : (-(1 - colorPos))*0.03f;
-                samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? (1 - colorPos)*0.05f : (-(1 - colorPos))*0.05f;
-                samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? (1 - colorPos)*0.025f : (-(1 - colorPos))*0.025f;
-
+            /*
+            samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) * colorPos * 2 - colorPos) * 0.4f;
+            samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? (1 - colorPos)*0.7f : (-(1 - colorPos))*0.4f;
+            */
         }
 
         ac = AudioClip.Create("sine", samples.Length, 1, sampleFreq, false);

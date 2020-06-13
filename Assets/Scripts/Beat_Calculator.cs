@@ -10,10 +10,10 @@ public class Beat_Calculator : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         pbpm = bpm;
-        float metro = 60 / (bpm / 4);
+        metro = 60 / (bpm / 4);
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class Beat_Calculator : MonoBehaviour
         if (pbpm != bpm)
         {
             pbpm = bpm;
-            float metro = 60 / (bpm / 4);
+            metro = 60 / (bpm / 4);
         }
 
     }

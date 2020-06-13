@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.051455222, g: 0.04926507, b: 0.05206489, a: 1}
+  m_IndirectSpecularColor: {r: 0.05144009, g: 0.049263597, b: 0.052063458, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1630,7 +1630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sampleFreq: 48000
-  BPM: {fileID: 0}
+  BPM: {fileID: 834106310}
   metro: 0
   chord_progress: 02000000050000000100000004000000
   currentchord: 0
@@ -1666,15 +1666,6 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  fbass:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
   ac:
   - {fileID: 0}
   - {fileID: 0}
@@ -1682,11 +1673,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   aud:
-  - {fileID: 762299909}
-  - {fileID: 2137023105}
-  - {fileID: 226727786}
-  - {fileID: 940138621}
-  - {fileID: 1158856465}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   audi:
   - {fileID: 762299908}
   - {fileID: 2137023104}

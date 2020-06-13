@@ -19,7 +19,7 @@ public class objectPlay : MonoBehaviour
     {
         metro = GameObject.FindWithTag("bpm").GetComponent<Beat_Calculator>().metro;
         aud = this.gameObject.GetComponent<AudioSource>();
-        aud.volume = 0.5f;
+        aud.volume = 0.8f;
         origScale = this.gameObject.GetComponent<Transform>();
         scale = origScale.localScale.x / 500f;
         clickTrigger = false;
@@ -45,9 +45,10 @@ public class objectPlay : MonoBehaviour
             if (clickTrigger == true)
             {
                 clickToggle = true;
-                clickTrigger = false;
+
                 time = Time.time;
                 counter = 0;
+                clickTrigger = false;
             }
 
             else
@@ -60,9 +61,10 @@ public class objectPlay : MonoBehaviour
             if (clickTrigger == true)
             {
                 clickToggle = false;
-                clickTrigger = false;
+
                 time = 0;
                 counter = 0;
+                clickTrigger = false;
             }
             else
             {
