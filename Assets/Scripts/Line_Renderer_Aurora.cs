@@ -40,6 +40,8 @@ public class Line_Renderer_Aurora : MonoBehaviour {
     void Update () {
         LineInteraction ();
         ColorPalleteInteraction ();
+
+        
     }
 
     void ColorPalleteInteraction () {

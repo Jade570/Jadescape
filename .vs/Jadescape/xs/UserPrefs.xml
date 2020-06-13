@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{9F924911-E47E-0E09-6736-63A4A28DD262}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Line_Renderer_Aurora.cs">
+    <Files>
+      <File FileName="Assets/Tutorial.cs" Line="38" Column="32" />
+      <File FileName="Assets/Scripts/Aurora_edited.cs" Line="163" Column="111" />
+      <File FileName="Assets/Scripts/Line_Renderer_Aurora.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Jadescape" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Line_Renderer_Aurora.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="4a568b63-d746-41de-a018-a2961cc24e7f" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

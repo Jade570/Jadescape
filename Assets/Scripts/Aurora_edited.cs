@@ -160,6 +160,7 @@ public class Aurora_edited : MonoBehaviour {
                 Vector3 p_Position;
                 // 써큘러가 아니면 포지션을 정하는 방식은 일단 다음과 같다.
                 //if (IsMakingDone == true)
+                vertexs[i] = new Vector3(vertexs[i].x * 1.005f, vertexs[i].y * 1.005f, vertexs[i].z * 1.005f);
                 p_Position = vertexs[i] + new Vector3 (offset / 4, 0, 0); //+ transform.position;
                 //else p_Position = vertexs[i] + transform.position;
                 //p_Position = new Vector3 (i+offset * auroraSizes.x, i+0, i+auroraSizes.z) + transform.position;
