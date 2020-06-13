@@ -302,14 +302,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 33946306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!135 &33946311
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -405,14 +408,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 165646972}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!136 &165646975
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -873,14 +879,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 477774086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!136 &477774089
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1006,14 +1015,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 494810314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!136 &494810317
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1139,14 +1151,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 521491010}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!136 &521491013
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1278,14 +1293,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 547653710}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!135 &547653713
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1664,17 +1682,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   aud:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 762299909}
+  - {fileID: 2137023105}
+  - {fileID: 226727786}
+  - {fileID: 940138621}
+  - {fileID: 1158856465}
   audi:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 762299908}
+  - {fileID: 2137023104}
+  - {fileID: 226727785}
+  - {fileID: 940138620}
+  - {fileID: 1158856464}
 --- !u!1 &762299908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,14 +2010,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 806540410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!135 &806540415
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2039,10 +2060,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 834106310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a740989518eba7b4f9b4b70fdb443578, type: 3}
+  m_Script: {fileID: 11500000, guid: c5f99f7ae0564ad46a49e58219de46e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bpm: 120
+  pbpm: 0
   metro: 0
 --- !u!4 &834106312
 Transform:
@@ -2253,14 +2275,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 849696911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!135 &849696916
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2457,14 +2482,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 851961513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!135 &851961518
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2751,14 +2779,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 872207741}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!135 &872207747
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2854,16 +2885,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 931059799}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dad2156304efb124182d0d7f4363bbc1, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   aud: {fileID: 0}
   clickTrigger: 0
   clickToggle: 0
-  vecScale: 0
-  counter: 0
+  scale: 0
+  origScale: {fileID: 0}
   time: 0
   metro: 0
+  counter: 0
 --- !u!135 &931059802
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3290,14 +3322,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1016314653}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!135 &1016314657
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3501,14 +3536,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1119504903}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!135 &1119504908
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3675,6 +3713,12 @@ AudioLowPassFilter:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1246408668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1391895268210758, guid: 7e54d9a2dcc97dc419b5c5dc91827090,
+    type: 3}
+  m_PrefabInstance: {fileID: 869558619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1276519114 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 151664, guid: fa49e460baf435b4780da7196c2ab473,
@@ -3690,14 +3734,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1276519114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!135 &1276519117
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4336,14 +4383,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1623551281}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!135 &1623551286
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4647,14 +4697,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1762159511}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!135 &1762159516
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4846,14 +4899,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1822803418}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!135 &1822803423
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5116,14 +5172,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1902990065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!135 &1902990070
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5399,14 +5458,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1928614313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a728e8441387ea4187e7f8264afb5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d15ff6b63c25e4f409256aa8cb012288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  parentobject: {fileID: 0}
-  metro: 0
+  aud: {fileID: 0}
   clickTrigger: 0
-  controller0Position: {fileID: 0}
+  clickToggle: 0
+  scale: 0
+  origScale: {fileID: 0}
+  time: 0
+  metro: 0
+  counter: 0
 --- !u!135 &1928614318
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5454,7 +5516,7 @@ MonoBehaviour:
   sampleFreq: 48000
   frequency: 440
   pfrequency: 0
-  dot2: {fileID: 0}
+  dot2: {fileID: 1246408668}
   ac: {fileID: 0}
   aud: {fileID: 0}
 --- !u!4 &1966773346
