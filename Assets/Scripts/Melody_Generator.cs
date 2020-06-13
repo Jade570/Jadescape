@@ -118,8 +118,21 @@ public class Melody_Generator : MonoBehaviour
         for (int i = 0; i < samples.Length; i++)
         {
 
-                samples[i] = Mathf.Repeat(i * frequency / sampleFreq, 1) * colorPos * 2 - colorPos;
-                samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? 1 - colorPos : -(1 - colorPos);
+                samples[i] = (Mathf.Repeat(i * frequency / sampleFreq, 1) * colorPos * 2 - colorPos) * 0.7f;
+                samples[i] += (Mathf.Repeat(i * frequency * 2 / sampleFreq, 1) * colorPos * 2 - colorPos) * 0.1f;
+                samples[i] += (Mathf.Repeat(i * frequency * 3 / sampleFreq, 1) * colorPos * 2 - colorPos) * 0.025f;
+                samples[i] += (Mathf.Repeat(i * frequency * 4 / sampleFreq, 1) * colorPos * 2 - colorPos) * 0.07f;
+                samples[i] += (Mathf.Repeat(i * frequency * 5 / sampleFreq, 1) * colorPos * 2 - colorPos) * 0.03f;
+                samples[i] += (Mathf.Repeat(i * frequency * 8 / sampleFreq, 1) * colorPos * 2 - colorPos) * 0.05f;
+                samples[i] += (Mathf.Repeat(i * frequency * 16 / sampleFreq, 1) * colorPos * 2 - colorPos) * 0.025f;
+
+                samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? (1 - colorPos)*0.7f : (-(1 - colorPos))*0.7f;
+                samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? (1 - colorPos)*0.1f : (-(1 - colorPos))*0.1f;
+                samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? (1 - colorPos)*0.025f : (-(1 - colorPos))*0.025f;
+                samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? (1 - colorPos)*0.07f : (-(1 - colorPos))*0.07f;
+                samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? (1 - colorPos)*0.03f : (-(1 - colorPos))*0.03f;
+                samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? (1 - colorPos)*0.05f : (-(1 - colorPos))*0.05f;
+                samples[i] += (Mathf.Repeat(i * frequency / sampleFreq, 1) > 0.5f) ? (1 - colorPos)*0.025f : (-(1 - colorPos))*0.025f;
 
         }
 
