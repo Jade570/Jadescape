@@ -35,7 +35,7 @@ public class Tutorial : MonoBehaviour
         if (Controller.UPvr_GetKeyDown(0, Pvr_KeyCode.APP) || Input.GetMouseButtonDown(1))
         {
             tutorial_image[tutorial_count].SetActive(false);
-            tutorial_count = 8;
+            tutorial_count = 7;
         }
     }
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Pvr_UnitySDKAPI;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Line_Renderer_Aurora : MonoBehaviour {
 
@@ -26,6 +27,8 @@ public class Line_Renderer_Aurora : MonoBehaviour {
     public GameObject ColorPallete;
     public GameObject CurrentCollorDisplay;
 
+    int reloadStack;
+
     void Awake () {
         //PC 시뮬레이션을 위한 카메라 가져오기 - 이거 카메라 굳이 안가져오고 mainCamera 함수쓰면 될거같은데
         thisCamera = Camera2.GetComponent<Camera> ();
@@ -41,7 +44,19 @@ public class Line_Renderer_Aurora : MonoBehaviour {
         LineInteraction ();
         ColorPalleteInteraction ();
 
-        
+        if (Pvr_UnitySDKAPI.Controller.UPvr_GetKey(0, Pvr_KeyCode.APP) || Input.GetMouseButton(1))
+        {
+            reloadStack++;
+        }else
+        {
+            reloadStack = 0;
+        }
+
+        if (reloadStack > 130)
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
     }
 
     void ColorPalleteInteraction () {
