@@ -142,6 +142,7 @@ public class Aurora_edited : MonoBehaviour {
             if (loop == false) {
                 //선의 앞색깔과 뒷색깔을 점점 투명하게 만듬
                 auroraTransparency -= 0.01f * FadeSpeed;
+                transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * 10);
             } else { transform.Rotate (new Vector3 (0, 1, 0) * Time.deltaTime * 10); }
 
         }
