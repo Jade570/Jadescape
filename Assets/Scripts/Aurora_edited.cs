@@ -85,8 +85,10 @@ public class Aurora_edited : MonoBehaviour {
         pRenderer.renderingLayerMask = 8;
 
         //collision 모듈 어떻게 스크립트로 켜는지 몰라서 그냥 API문서 복붙함
+        /*
         ParticleSystem ps;
         ps = m_Particle.GetComponent<ParticleSystem> ();
+       
         var collision = ps.collision;
         collision.enabled = true;
 
@@ -94,6 +96,7 @@ public class Aurora_edited : MonoBehaviour {
         collision.type = ParticleSystemCollisionType.World;
         collision.mode = ParticleSystemCollisionMode.Collision3D;
         collision.quality = ParticleSystemCollisionQuality.Low;
+        */
     }
 
     public void SetParticleCount () {
