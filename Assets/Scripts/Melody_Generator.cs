@@ -27,8 +27,8 @@ public class Melody_Generator : MonoBehaviour
         colorPos = GameObject.FindWithTag("GameController").GetComponent<Line_Renderer_Aurora>().ColorPos; //hue 0~1
         pfrequency = frequency;
         updatewave();
-        aud.volume = 0.8f;
-
+        aud.volume = 1f;
+        Debug.Log(Pvr_UnitySDKAPI.Controller.UPvr_GetControllerState(0) == Pvr_UnitySDKAPI.ControllerState.Connected);
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class Melody_Generator : MonoBehaviour
     {
 
 
-        float num = (Pvr_UnitySDKAPI.Controller.UPvr_GetControllerState(0) == Pvr_UnitySDKAPI.ControllerState.Connected) ? (dot2.transform.position.y+4) : Mathf.Round(Input.mousePosition.y);
+        float num = (Pvr_UnitySDKAPI.Controller.UPvr_GetControllerState(0) == Pvr_UnitySDKAPI.ControllerState.Connected) ? (dot2.transform.position.y+4) : Mathf.Round(Input.mousePosition.y/divisor);
 
         if (Pvr_UnitySDKAPI.Controller.UPvr_GetControllerState(0) == Pvr_UnitySDKAPI.ControllerState.Connected) //vr
         {
@@ -211,5 +211,14 @@ public class Melody_Generator : MonoBehaviour
         freq = (float)Math.Pow(2, power) * 440;
 
         return freq;
+    }
+
+
+    public float ftom(float frequency)
+    {
+        float midi;
+        midi = Mathf.Log(frequency/440f, 2)*12 + 69;
+
+        return midi;
     }
 }

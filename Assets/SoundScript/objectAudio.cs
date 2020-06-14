@@ -42,12 +42,14 @@ public class objectAudio : MonoBehaviour {
         }
 
         //pc
-        else if (Input.GetMouseButtonDown(0))
+        else if (Input.GetMouseButtonDown(1))
         {
-
+            /*
             Ray ray1 = new Ray();
             ray1.direction = controller0Position.transform.TransformDirection(0, 0, 1);
-            ray1.origin = controller0Position.position;
+            ray1.origin = controller0Position.position;*/
+            Ray ray1 = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
             RaycastHit[] hits;
             hits = Physics.RaycastAll(ray1);

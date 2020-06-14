@@ -152,14 +152,18 @@ public class Chord_Generator : MonoBehaviour
     {
         for (int i = 0; i < samples0.Length; i++)
         {
-            samples0[i] = Mathf.Sin(Mathf.PI * 2 * i * f1[chord_progress[currentchord % 4] - 1] / sampleFreq) * 0.8f;
-            samples1[i] = Mathf.Sin(Mathf.PI * 2 * i * f2[chord_progress[currentchord % 4] - 1] / sampleFreq) * 0.8f;
-            samples2[i] = Mathf.Sin(Mathf.PI * 2 * i * f3[chord_progress[currentchord % 4] - 1] / sampleFreq) * 0.8f;
-            samples3[i] = Mathf.Sin(Mathf.PI * 2 * i * f4[chord_progress[currentchord % 4] - 1] / sampleFreq) * 0.8f;
-            samples0[i] += (Mathf.Repeat(i * f1[chord_progress[currentchord % 4] - 1] / sampleFreq, 1) > 0.5f) ? 0.15f : -0.2f;
-            samples1[i] += (Mathf.Repeat(i * f2[chord_progress[currentchord % 4] - 1] / sampleFreq, 1) > 0.5f) ? 0.15f : -0.2f;
-            samples2[i] += (Mathf.Repeat(i * f3[chord_progress[currentchord % 4] - 1] / sampleFreq, 1) > 0.5f) ? 0.15f : -0.2f;
-            samples3[i] += (Mathf.Repeat(i * f4[chord_progress[currentchord % 4] - 1] / sampleFreq, 1) > 0.5f) ? 0.15f : -0.2f;
+            samples0[i] = Mathf.Sin(Mathf.PI * 2 * i * f1[chord_progress[currentchord % 4] - 1] / sampleFreq) * 0.4f;
+            samples1[i] = Mathf.Sin(Mathf.PI * 2 * i * f2[chord_progress[currentchord % 4] - 1] / sampleFreq) * 0.4f;
+            samples2[i] = Mathf.Sin(Mathf.PI * 2 * i * f3[chord_progress[currentchord % 4] - 1] / sampleFreq) * 0.4f;
+            samples3[i] = Mathf.Sin(Mathf.PI * 2 * i * f4[chord_progress[currentchord % 4] - 1] / sampleFreq) * 0.4f;
+
+            samples0[i] += Mathf.Sin(Mathf.PI * 1 * i * f1[chord_progress[currentchord % 4] - 1] / sampleFreq) * 0.3f;
+
+
+            samples0[i] += (Mathf.Repeat(3/2*i * f1[chord_progress[currentchord % 4] - 1] / sampleFreq, 1) > 0.5f) ? 0.3f : -0.2f;
+            samples1[i] += (Mathf.Repeat(3/2*i * f2[chord_progress[currentchord % 4] - 1] / sampleFreq, 1) > 0.5f) ? 0.3f : -0.2f;
+            samples2[i] += (Mathf.Repeat(3/2*i * f3[chord_progress[currentchord % 4] - 1] / sampleFreq, 1) > 0.5f) ? 0.3f : -0.2f;
+            samples3[i] += (Mathf.Repeat(3/2*i * f4[chord_progress[currentchord % 4] - 1] / sampleFreq, 1) > 0.5f) ? 0.3f : -0.2f;
         }
 
         for (int i = 0; i < 4; i++)
@@ -173,10 +177,13 @@ public class Chord_Generator : MonoBehaviour
         ac[3].SetData(samples3, 0);
 
 
-        for (int i = 0; i < 4; i++)
+        aud[0].clip = ac[0];
+        aud[0].volume = 0.4f;
+        aud[0].Play();
+        for (int i = 1; i < 4; i++)
         {
             aud[i].clip = ac[i];
-            aud[i].volume = 0.3f;
+            aud[i].volume = 0.2f;
             aud[i].Play();
         }
 
