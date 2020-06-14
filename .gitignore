@@ -1,3 +1,7 @@
+*.apk
+*.aab
+
+
 ###
 # Unity folders and files
 ###
@@ -39,5 +43,3 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 Thumbs.db
-
-Jadescape/

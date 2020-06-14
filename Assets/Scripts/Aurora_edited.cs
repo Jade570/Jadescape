@@ -33,6 +33,7 @@ public class Aurora_edited : MonoBehaviour {
     public Material auroraMaterialMain;
 
     public bool IsMakingDone;
+    public bool loop;
 
     void Start () {
         Initialize ();
@@ -47,11 +48,11 @@ public class Aurora_edited : MonoBehaviour {
     private ParticleSystem.Particle[] p_Particles;
     private Light[] l_Lights;
     public List<Vector3> vertexs = new List<Vector3> ();
+    public float auroraTransparency;
+    public float FadeSpeed;
 
     // Main Aurora Initialization
     private void Initialize () {
-
-        Random.InitState (auroraSeed);
 
         GameObject m_Particle = new GameObject ("m_Particle");
         m_Particle.transform.SetParent (transform);
@@ -59,6 +60,7 @@ public class Aurora_edited : MonoBehaviour {
         //Create particle system
         pSystem = m_Particle.AddComponent<ParticleSystem> ();
         pRenderer = m_Particle.GetComponent<ParticleSystemRenderer> ();
+
         p_mEmission = pSystem.emission;
         p_mMain = pSystem.main;
 
@@ -71,18 +73,38 @@ public class Aurora_edited : MonoBehaviour {
 
         p_mMain.maxParticles = 10;
         p_Particles = new ParticleSystem.Particle[10];
-       // pSystem.Emit (100);
+        // pSystem.Emit (100);
         pSystem.GetParticles (p_Particles);
+        Random.InitState (0);
+        auroraSeed = Time.frameCount;
 
+        this.GetComponentInChildren<ParticleSystem> ().gameObject.layer = 8;
+
+        auroraTransparency = 0.3f;
+
+        pRenderer.renderingLayerMask = 8;
+
+        //collision 모듈 어떻게 스크립트로 켜는지 몰라서 그냥 API문서 복붙함
+        /*
+        ParticleSystem ps;
+        ps = m_Particle.GetComponent<ParticleSystem> ();
+       
+        var collision = ps.collision;
+        collision.enabled = true;
+
+        // API 문서 검색해서 간신히 알아냄
+        collision.type = ParticleSystemCollisionType.World;
+        collision.mode = ParticleSystemCollisionMode.Collision3D;
+        collision.quality = ParticleSystemCollisionQuality.Low;
+        */
     }
 
     public void SetParticleCount () {
-        if(vertexs.Count>10)
-        {
-        p_mMain.maxParticles = vertexs.Count + 10;
-        p_Particles = new ParticleSystem.Particle[vertexs.Count];
-        pSystem.Emit (vertexs.Count);
-        pSystem.GetParticles (p_Particles);
+        if (vertexs.Count > 10) {
+            p_mMain.maxParticles = vertexs.Count + 10;
+            p_Particles = new ParticleSystem.Particle[vertexs.Count];
+            pSystem.Emit (vertexs.Count);
+            pSystem.GetParticles (p_Particles);
         }
     }
 
@@ -92,21 +114,23 @@ public class Aurora_edited : MonoBehaviour {
 
         //colorkey 설정 - 중간색이 파랑. (첫색은 0 끝색이 1, 구간별 색은 다양하게 넣을 수 있음)
 
-        //GradientUsageAttribute = false;
         gradientColor = new GradientColorKey[1];
         gradientColor[0].color = NewGrad;
         gradientColor[0].time = 0.5F;
 
         /*
-        float h, s, v;
+        // HDR을 켜면 hue값이 미세조정되는데 색깔이 개판으로 나오고, hdr를 끄면 색깔이 조정이 안됨
+        float h, s, v, h1, h2;
         Color.RGBToHSV (NewGrad, out h, out s, out v);
-        gradientColor[0].color = Color.HSVToRGB (h - 0.05f, s, v);
-        gradientColor[0].time = 0.01F;
-      
-        gradientColor[2].color = Color.HSVToRGB (h + 0.05f, s, v);
-        gradientColor[2].time = 0.99F;
-*/
-
+        h1 = h+0.3f;
+        h2 = h+0.3f;
+        gradientColor[0].color = Color.HSVToRGB (h1, s, v, false);
+        gradientColor[0].time = 0.0F;
+        gradientColor[1].color = Color.HSVToRGB (h, s, v, false);
+        gradientColor[1].time = 0.5F;
+        gradientColor[2].color = Color.HSVToRGB (h2, s, v, false);
+        gradientColor[2].time = 1.0F;
+        */
         //밖에서 public으로 받아온 gradient의 정보를 내가 임의로 설정한 colorkey로 바꿔치기
         auroraColorMain.SetKeys (gradientColor, auroraColorMain.alphaKeys);
 
@@ -114,6 +138,18 @@ public class Aurora_edited : MonoBehaviour {
 
     //Base Aurora Update
     private void Update () {
+        if (IsMakingDone == true) {
+            if (loop == false) {
+                //선의 앞색깔과 뒷색깔을 점점 투명하게 만듬
+                auroraTransparency -= 0.01f * FadeSpeed;
+                transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * 10);
+            } else { transform.Rotate (new Vector3 (0, 1, 0) * Time.deltaTime * 10); }
+
+        }
+
+        if (auroraTransparency < 0) {
+            Destroy (gameObject);
+        }
 
         if (vertexs.Count > 1) {
             for (int i = 0; i < vertexs.Count; i++) {
@@ -122,19 +158,30 @@ public class Aurora_edited : MonoBehaviour {
 
                 float perlin = 0;
 
-                perlin = Mathf.PerlinNoise (Time.time * auroraAnimationFrequency, time * auroraCurvature);
+                perlin = Mathf.PerlinNoise (auroraSeed + Time.time * auroraAnimationFrequency, auroraSeed + time * auroraCurvature);
                 float offset = perlin * 2f - 1f;
 
                 Vector3 p_Position;
                 // 써큘러가 아니면 포지션을 정하는 방식은 일단 다음과 같다.
                 //if (IsMakingDone == true)
-                p_Position = vertexs[i]; //+ transform.position;
+
+
+                vertexs[i] = new Vector3(vertexs[i].x * 1.005f, vertexs[i].y * 1.005f, vertexs[i].z * 1.005f);
+
+
+                p_Position = vertexs[i] + new Vector3 (offset / 4, 0, 0); //+ transform.position;
                 //else p_Position = vertexs[i] + transform.position;
                 //p_Position = new Vector3 (i+offset * auroraSizes.x, i+0, i+auroraSizes.z) + transform.position;
                 // Quaternion.Euler(0, auroraRotation + angleOffset, 0) * new Vector3(offset * auroraSizes.x, 0, auroraSizes.z) + transform.position;
 
-                //evaluate 함수는 
-                Color p_Color = auroraColorMain.Evaluate (time);
+                float h, s, v;
+                Color.RGBToHSV (auroraColorMain.Evaluate (time), out h, out s, out v);
+                // 노이즈를 hue값에 끼워넣어 단색이 아니라 살짝 섞인 색이 나오게 만들기
+                Color newColor = Color.HSVToRGB (h + (offset / 5000), s, v, true);
+                //투명도 조절
+                Color p_Color = new Color (newColor.r, newColor.g, newColor.b, auroraTransparency);
+
+                //Color p_Color = auroraColorMain.Evaluate (time);
 
                 float sizeY = auroraSizes.y;
 
@@ -145,9 +192,9 @@ public class Aurora_edited : MonoBehaviour {
 
             }
             pSystem.SetParticles (p_Particles, vertexs.Count);
-            //오로라 오브젝트만 블러처리가 되도록 카메라에 컴포넌트를 달아두었음. 그러려면 레이어8에 지정되어야함
 
         }
+
     }
 
 }

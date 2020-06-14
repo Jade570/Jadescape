@@ -59,11 +59,10 @@ public class Line_Stance : MonoBehaviour {
     public void getDir () {
         // 방향을 수십개의 vertex중 어떤 것을 골라 어떻게 계산해야 할지 아직 논의안함. 일단은 맨 앞이랑 맨 뒤 비교하는걸로
         floatDir = lineRenderer.GetPosition (lineRenderer.positionCount - 1) - lineRenderer.GetPosition (0);
-        
-       
+
         floatDir.Normalize ();
-       // floatDir = new Vector3 (-floatDir.y,floatDir.x , floatDir.z);
-       // floatDir = new Vector3 (-floatDir.y,floatDir.x , floatDir.z);
+        // floatDir = new Vector3 (-floatDir.y,floatDir.x , floatDir.z);
+        // floatDir = new Vector3 (-floatDir.y,floatDir.x , floatDir.z);
 
     }
 
