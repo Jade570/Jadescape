@@ -176,7 +176,7 @@ public class Chord_Generator : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             aud[i].clip = ac[i];
-            aud[i].volume = 0.4f;
+            aud[i].volume = 0.3f;
             aud[i].Play();
         }
 
