@@ -20,7 +20,7 @@ An error occurs when integrating Pd patch with unity in Pico VR - pure data inte
 ## How to Open in Unity
 1. Clone this repository.
 2. Open this repository as a project in Unity.
-3. On Project tab, click Assets->Scripts->SampleScene.  
+3. On Project tab, click Assets->Scenes->SampleScene.  
 ![how to fine samplescene](https://raw.githubusercontent.com/Jade570/Jadescape/mouseDemo/readmeFiles/unity%20howto.png)
 
 
