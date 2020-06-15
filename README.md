@@ -17,12 +17,14 @@ Pico VR g2 4k
 An error occurs when integrating Pd patch with unity in Pico VR - pure data integration plan aborted.
 
 
-## How to Open in Unity
+## How to Play demo in Unity
 1. Clone this repository.
 2. Open this repository as a project in Unity.
 3. On Project tab, click Assets->Scenes->SampleScene.  
 ![how to fine samplescene](https://raw.githubusercontent.com/Jade570/Jadescape/mouseDemo/readmeFiles/unity%20howto.png)
-
+4. Press play button.
+5. Press left alt key + mouse left button to set screen into single camera scene.
+6. Click on space objects with mouse right button and draw auroras with mouse left button! Enjoy your journey.
 
 
 ## Members
