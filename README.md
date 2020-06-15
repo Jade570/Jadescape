@@ -1,13 +1,21 @@
-# 🎵 Jadescape
+# Jadescape
 Final Project of team Theramin for 2020-1 Immersive Media Studio @ Sogang Univ.
+
+## Supported Device
+Pico VR g2 4k
 
 ## Program Used
 - Unity
   - 2018.4.22f1 (LTS) https://unity3d.com/unity/whats-new/2018.4.22f1
+<s>  
+  
 - Pure Data
   - Vanilla 0.50-2 https://puredata.info/downloads/pure-data
 - libpd Unity wrapper
-  - LibPd Unity Integration https://github.com/LibPdIntegration/LibPdIntegration
+  - LibPd Unity Integration https://github.com/LibPdIntegration/LibPdIntegration </s>  
+
+An error occurs when integrating Pd patch with unity in Pico VR - pure data integration plan aborted.
+
 
 ## How to Open in Unity
 1. Clone this repository.
@@ -28,9 +36,9 @@ Final Project of team Theramin for 2020-1 Immersive Media Studio @ Sogang Univ.
     - Seeyoung Song https://github.com/iseeyoung1219  
 
 - Tech
-  - Puredata & Unity
+  - Sound related
     - Cheryoung Oh https://github.com/Jade570 
-  - Unity
+  - Visual related
     - Sangkyu Lee https://github.com/sgexclsv
     
 
